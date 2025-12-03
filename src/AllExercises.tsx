@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import TypeExercises from './components/TypeExercises';
 import ExpressionExercises from './components/ExpressionExercises';
 import TruthTableExercises from './components/TruthTableExercises';
