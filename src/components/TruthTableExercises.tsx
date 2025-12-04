@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Award, AlertCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Award, AlertCircle, ArrowLeft } from 'lucide-react';
 
 const generateRows = () => {
     const rows = [];
@@ -83,6 +84,12 @@ const TruthTableExercises: React.FC = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-100 p-6 flex items-center justify-center">
             <div className="max-w-6xl w-full">
+                <div className="flex justify-between items-center mb-6">
+                    <Link to="/" className="inline-flex items-center gap-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition shadow">
+                        <ArrowLeft size={20} />
+                        <span>Назад в меню</span>
+                    </Link>
+                </div>
                 <div className="bg-white rounded-xl shadow-2xl p-8">
                     <div className="flex items-center gap-3 mb-6">
                         <div className="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">3</div>
