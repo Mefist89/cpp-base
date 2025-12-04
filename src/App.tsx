@@ -3,6 +3,8 @@ import AllExercises from './AllExercises';
 import TypeExercises from './components/TypeExercises';
 import ExpressionExercises from './components/ExpressionExercises';
 import TruthTableExercises from './components/TruthTableExercises';
+import ForLoopExercisePage from './pages/ForLoopExercisePage';
+import ExpressionValuesExercisePage from './pages/ExpressionValuesExercisePage';
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
       <Route path="/types" element={<TypeExercises />} />
       <Route path="/expressions" element={<ExpressionExercises />} />
       <Route path="/truth-tables" element={<TruthTableExercises />} />
+      <Route path="/exercises/for-loop" element={<ForLoopExercisePage />} />
+      <Route path="/exercises/expression-values" element={<ExpressionValuesExercisePage />} />
     </Routes>
   )
 }

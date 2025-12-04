@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import ReferenceGuide from './components/ReferenceGuide';
-import { Type, FunctionSquare, Pilcrow } from 'lucide-react';
+import { Type, FunctionSquare, Pilcrow, Repeat, Calculator } from 'lucide-react';
 
 const AllExercises = () => {
     return (
@@ -28,6 +28,18 @@ const AllExercises = () => {
                         <Pilcrow size={48} className="text-indigo-600 mb-4" />
                         <h2 className="text-2xl font-bold text-indigo-900">Tabele de Adevăr</h2>
                         <p className="text-gray-600 mt-2">Completează tabele de adevăr pentru funcții logice.</p>
+                    </Link>
+
+                    <Link to="/exercises/for-loop" className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-2xl hover:scale-105 transition-transform duration-300 flex flex-col items-center">
+                        <Repeat size={48} className="text-green-600 mb-4" />
+                        <h2 className="text-2xl font-bold text-green-900">Bucle Repetitive</h2>
+                        <p className="text-gray-600 mt-2">Exersează instrucțiunile repetitive cu 'for'.</p>
+                    </Link>
+
+                    <Link to="/exercises/expression-values" className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-2xl hover:scale-105 transition-transform duration-300 flex flex-col items-center">
+                        <Calculator size={48} className="text-orange-600 mb-4" />
+                        <h2 className="text-2xl font-bold text-orange-900">Valori Expresii</h2>
+                        <p className="text-gray-600 mt-2">Calculează valoarea expresiilor C++.</p>
                     </Link>
                 </div>
 
