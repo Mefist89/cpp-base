@@ -16,7 +16,7 @@ const ExpressionExercisePage = () => {
     <ExpressionExercise 
       exercises={expressionExercisesData}
       nextExercisePath="/truth-tables"
-      previousExercisePath="/types"
+      previousExercisePath="/"
     />
   );
 };

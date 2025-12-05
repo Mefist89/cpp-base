@@ -42,6 +42,7 @@ const ForLoopExercisePage = () => {
       loopExercises={loopExercises} 
       typeOptions={typeOptions}
       correctType={correctType}
+      previousExercisePath="/"
     />
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { CheckCircle, XCircle, Award, Info } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { CheckCircle, XCircle, Award, Info, ArrowLeft } from 'lucide-react';
 
 interface LoopExercise {
   id: number;
@@ -12,9 +13,10 @@ interface ForLoopExerciseProps {
   loopExercises: LoopExercise[];
   typeOptions: string[];
   correctType: string;
+  previousExercisePath?: string;
 }
 
-const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ loopExercises, typeOptions, correctType }) => {
+const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ loopExercises, typeOptions, correctType, previousExercisePath }) => {
   const [loopAnswers, setLoopAnswers] = useState<Record<number, string>>({});
   const [typeAnswer, setTypeAnswer] = useState('');
   const [showResults, setShowResults] = useState(false);
@@ -70,6 +72,14 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ loopExercises, typeOp
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-teal-100 p-6">
       <div className="max-w-5xl mx-auto space-y-8">
         
+        <div className="flex justify-between items-center mb-6">
+          {previousExercisePath && (
+            <Link to={previousExercisePath} className="inline-flex items-center gap-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition shadow">
+              <ArrowLeft size={20} />
+              <span>Назад в меню</span>
+            </Link>
+          )}
+        </div>
         <div className="bg-white rounded-xl shadow-2xl p-8">
           <h1 className="text-3xl font-bold text-green-900 mb-6">
             Instrucțiuni Repetitive - Exercițiu

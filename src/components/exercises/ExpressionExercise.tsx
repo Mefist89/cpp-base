@@ -59,7 +59,7 @@ const ExpressionExercise: React.FC<ExpressionExerciseProps> = ({ exercises, next
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6 flex items-center justify-center">
       <div className="max-w-6xl w-full">
         <div className="flex justify-between items-center mb-6">
-          {previousExercisePath && (
+        {previousExercisePath && (
             <Link to={previousExercisePath} className="inline-flex items-center gap-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition shadow">
               <ArrowLeft size={20} />
               <span>Назад в меню</span>
