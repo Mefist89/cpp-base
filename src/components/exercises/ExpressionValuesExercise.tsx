@@ -129,14 +129,14 @@ const ExpressionValuesExercise: React.FC<ExpressionValuesExerciseProps> = ({ exe
               disabled={Object.keys(answers).length === 0}
               className="bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed shadow-lg text-lg"
             >
-              Verifica Raspunsurile
+              Verifică Răspunsurile
             </button>
             
             <button
               onClick={resetExercise}
               className="bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-600 transition shadow-lg text-lg"
             >
-              Reseteaza
+              Resetează
             </button>
 
             {showResults && (

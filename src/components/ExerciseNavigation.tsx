@@ -41,21 +41,21 @@ const ExerciseNavigation = () => {
                 className="inline-flex items-center gap-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition shadow disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
             >
                 <ArrowLeft size={20} />
-                <span>Предыдущее задание</span>
+                <span>Exercițiul anterior</span>
             </button>
             <button
                 onClick={handleHome}
                 className="inline-flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 transition shadow"
             >
                 <Home size={20} />
-                <span>К списку заданий</span>
+                <span>Lista exerciții</span>
             </button>
             <button
                 onClick={handleNext}
                 disabled={!hasNext}
                 className="inline-flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-700 transition shadow disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
-                <span>Следующее задание</span>
+                <span>Exercițiul următor</span>
                 <ArrowRight size={20} />
             </button>
         </div>

@@ -1,4 +1,5 @@
 import ExpressionValuesExercise from '../components/exercises/ExpressionValuesExercise';
+import ExerciseNavigation from '../components/ExerciseNavigation';
 
 const ExpressionValuesExercisePage = () => {
   const exercises = [
@@ -41,7 +42,10 @@ const ExpressionValuesExercisePage = () => {
   ];
 
   return (
-    <ExpressionValuesExercise exercises={exercises} />
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-100 p-6 flex flex-col items-center justify-center">
+      <ExerciseNavigation />
+      <ExpressionValuesExercise exercises={exercises} />
+    </div>
   );
 };
 

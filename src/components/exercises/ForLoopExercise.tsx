@@ -76,7 +76,7 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ loopExercises, typeOp
           {previousExercisePath && (
             <Link to={previousExercisePath} className="inline-flex items-center gap-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition shadow">
               <ArrowLeft size={20} />
-              <span>Назад в меню</span>
+              <span>Înapoi la meniu</span>
             </Link>
           )}
         </div>

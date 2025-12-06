@@ -1,30 +1,30 @@
-# Интерактивный тренажер по C++
+# Antrenor Interactiv C++
 
-Этот проект представляет собой веб-приложение, созданное с использованием React, TypeScript, Vite и Tailwind CSS. Оно предоставляет интерактивные упражнения для изучения и практики основ C++, включая типы данных, вычисление выражений и таблицы истинности.
+Acest proiect este o aplicație web creată cu React, TypeScript, Vite și Tailwind CSS. Oferă exerciții interactive pentru învățarea și practica fundamentelor C++, inclusiv tipuri de date, evaluarea expresiilor și tabele de adevăr.
 
-## Особенности
+## Caracteristici
 
-- **Упражнения на типы данных:** Определите правильный тип данных (`int`, `float`, `char`, `bool`) для заданных значений.
-- **Упражнения на выражения:** Вычислите значения и определите типы данных для различных C++ выражений.
-- **Упражнения с таблицами истинности:** Заполните таблицы истинности для логических выражений.
-- **Мгновенная проверка:** Проверяйте свои ответы в режиме реального времени и получайте оценку.
-- **Справочное руководство:** Встроенное руководство с информацией о типах данных C++ и логических операциях.
+- **Exerciții pe tipuri de date:** Determinați tipul de date corect (`int`, `float`, `char`, `bool`) pentru valorile date.
+- **Exerciții pe expresii:** Calculați valorile și determinați tipurile de date pentru diverse expresii C++.
+- **Exerciții cu tabele de adevăr:** Completați tabelele de adevăr pentru expresiile logice.
+- **Verificare instantanee:** Verificați răspunsurile în timp real și obțineți o notă.
+- **Ghid de referință:** Ghid încorporat cu informații despre tipurile de date C++ și operațiile logice.
 
-## Стек технологий
+## Stack de tehnologii
 
-- **Vite:** Быстрая и современная сборка для веб-разработки.
-- **React:** Библиотека для создания пользовательских интерфейсов.
-- **TypeScript:** Строгая типизация для JavaScript, улучшающая надежность кода.
-- **Tailwind CSS:** Утилитарный CSS-фреймворк для быстрого дизайна.
+- **Vite:** Construire rapidă și modernă pentru dezvoltarea web.
+- **React:** Bibliotecă pentru crearea interfețelor utilizator.
+- **TypeScript:** Tipizare strictă pentru JavaScript, care îmbunătățește fiabilitatea codului.
+- **Tailwind CSS:** Framework CSS utilitare pentru design rapid.
 
-## Как запустить
+## Cum să rulați
 
-1.  **Установите зависимости:**
+1.  **Instalați dependențele:**
     ```bash
     npm install
     ```
-2.  **Запустите сервер для разработки:**
+2.  **Rulați serverul de dezvoltare:**
     ```bash
     npm run dev
     ```
-3.  Откройте [http://localhost:5173](http://localhost:5173) в вашем браузере.
+3.  Deschideți [http://localhost:5173](http://localhost:5173) în browser-ul dumneavoastră.

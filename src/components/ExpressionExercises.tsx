@@ -59,10 +59,10 @@ const ExpressionExercises: React.FC = () => {
                 <div className="flex justify-between items-center mb-6">
                     <Link to="/" className="inline-flex items-center gap-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition shadow">
                         <ArrowLeft size={20} />
-                        <span>Назад в меню</span>
+                        <span>Înapoi la meniu</span>
                     </Link>
                     <Link to="/truth-tables" className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition shadow">
-                        <span>Следующее задание</span>
+                        <span>Exercițiul următor</span>
                         <ArrowRight size={20} />
                     </Link>
                 </div>
