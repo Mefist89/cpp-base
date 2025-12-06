@@ -1,5 +1,4 @@
 import ExpressionValuesExercise from '../components/exercises/ExpressionValuesExercise';
-import ExerciseNavigation from '../components/ExerciseNavigation';
 
 const ExpressionValuesExercisePage = () => {
   const exercises = [
