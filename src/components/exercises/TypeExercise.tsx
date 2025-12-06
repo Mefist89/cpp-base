@@ -74,50 +74,50 @@ const TypeExercise: React.FC<TypeExerciseProps> = ({ variants }) => {
         onVariantChange={setCurrentVariant}
         color="purple"
       />
-        <div className="space-y-4 mb-8">
+        <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
           {exercises.map((exercise) => (
-            <div key={exercise.id} className={`border-2 rounded-lg p-5 transition-all ${
+            <div key={exercise.id} className={`border-2 rounded-lg p-3 md:p-5 transition-all ${
               showTypeResults[currentVariant] ? (isTypeCorrect(exercise.id) ? 'border-green-400 bg-green-50' :
               (currentAnswers[exercise.id] ? 'border-red-400 bg-red-50' : 'border-gray-300 bg-gray-50')) :
               'border-gray-300 hover:border-purple-300 bg-white'}`}>
-              <div className="flex items-center gap-4">
-                <div className="flex-shrink-0 w-24">
-                  <span className="text-xl font-bold text-purple-900">{exercise.id})</span>
-                  <span className="ml-2 text-xl font-mono font-semibold">{exercise.value}</span>
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+                <div className="flex-shrink-0 w-20 md:w-24">
+                  <span className="text-lg md:text-xl font-bold text-purple-900">{exercise.id})</span>
+                  <span className="ml-2 text-lg md:text-xl font-mono font-semibold">{exercise.value}</span>
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 w-full">
                   <input type="text" value={currentAnswers[exercise.id] || ''}
                     onChange={(e) => handleTypeSelect(exercise.id, e.target.value.toLowerCase())}
                     disabled={showTypeResults[currentVariant]} placeholder="int, float, char sau bool"
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg font-semibold focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 disabled:bg-gray-100 disabled:cursor-not-allowed" />
+                    className="w-full px-2 md:px-4 py-2 md:py-3 text-xs md:text-lg border-2 border-gray-300 rounded-lg font-semibold focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 disabled:bg-gray-100 disabled:cursor-not-allowed" />
                 </div>
-                <div className="flex-shrink-0 w-12 flex justify-center">
+                <div className="flex-shrink-0 w-8 md:w-12 flex justify-center">
                   {showTypeResults[currentVariant] && currentAnswers[exercise.id] && (isTypeCorrect(exercise.id) ?
-                    <CheckCircle className="w-8 h-8 text-green-500" /> : <XCircle className="w-8 h-8 text-red-500" />)}
+                    <CheckCircle className="w-6 h-6 md:w-8 md:h-8 text-green-500" /> : <XCircle className="w-6 h-6 md:w-8 md:h-8 text-red-500" />)}
                 </div>
               </div>
               {showTypeResults[currentVariant] && !isTypeCorrect(exercise.id) && currentAnswers[exercise.id] && (
-                <div className="mt-3 pl-28 text-sm">
+                <div className="mt-2 md:mt-3 pl-0 md:pl-28 text-xs md:text-sm">
                   <span className="text-red-600 font-semibold">Răspuns corect: </span>
-                  <span className="ml-2 px-3 py-1 bg-green-100 text-green-800 rounded font-semibold">{exercise.correctType}</span>
+                  <span className="ml-2 px-2 md:px-3 py-1 bg-green-100 text-green-800 rounded font-semibold">{exercise.correctType}</span>
                 </div>
               )}
             </div>
           ))}
         </div>
         {showTypeResults[currentVariant] && (
-          <div className="ml-auto flex items-center gap-3 bg-purple-100 px-6 py-3 rounded-lg">
-            <Award className="w-6 h-6 text-purple-600" />
-            <span className="text-xl font-bold text-purple-900">Scor: {getTypeScore()} / {exercises.length}</span>
+          <div className="ml-auto flex items-center gap-2 md:gap-3 bg-purple-100 px-3 md:px-6 py-2 md:py-3 rounded-lg">
+            <Award className="w-5 h-5 md:w-6 md:h-6 text-purple-600" />
+            <span className="text-sm md:text-xl font-bold text-purple-900">Scor: {getTypeScore()} / {exercises.length}</span>
           </div>
         )}
       </div>
-      <div className="flex gap-4 items-center mt-6">
+      <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-center mt-4 md:mt-6">
         <button onClick={checkTypeAnswers} disabled={Object.keys(currentAnswers).length === 0}
-          className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed shadow-lg">
+          className="w-full md:w-auto bg-purple-600 text-white px-4 md:px-8 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base hover:bg-purple-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed shadow-lg">
           Verifică Răspunsurile
         </button>
-        <button onClick={resetTypeExercise} className="bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-600 transition shadow-lg">
+        <button onClick={resetTypeExercise} className="w-full md:w-auto bg-gray-500 text-white px-4 md:px-8 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base hover:bg-gray-600 transition shadow-lg">
           Resetează
         </button>
       </div>

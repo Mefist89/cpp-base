@@ -80,12 +80,12 @@ const ExpressionExercise: React.FC<ExpressionExerciseProps> = ({ variants }) => 
   const currentAnswers = expressionAnswers[currentVariant] || {};
 
   return (
-      <div className="bg-white rounded-xl shadow-2xl p-8">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">{currentVariant + 1}</div>
+      <div className="bg-white rounded-xl shadow-2xl p-4 md:p-8">
+        <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+          <div className="bg-blue-600 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center font-bold text-base md:text-xl">{currentVariant + 1}</div>
           <div>
-            <h2 className="text-3xl font-bold text-blue-900">Determinați tipul și valoarea fiecărei expresii</h2>
-            <p className="text-gray-600">Dată fiind declarațiile variabilelor</p>
+            <h2 className="text-lg md:text-3xl font-bold text-blue-900">Determinați tipul și valoarea fiecărei expresii</h2>
+            <p className="text-xs md:text-sm text-gray-600">Dată fiind declarațiile variabilelor</p>
           </div>
         </div>
         <div className="max-w-6xl w-full">
@@ -95,22 +95,22 @@ const ExpressionExercise: React.FC<ExpressionExerciseProps> = ({ variants }) => 
         onVariantChange={setCurrentVariant}
         color="blue"
       />
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-          <code className="text-sm font-mono">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 md:p-4 mb-4 md:mb-6">
+          <code className="text-xs md:text-sm font-mono">
             <strong>int</strong> a = 4, b = 8;<br />
             <strong>float</strong> c = 4.0, d = 2.0;<br />
             <strong>char</strong> q = 'a', z = 'a';
           </code>
         </div>
 
-        <div className="overflow-x-auto mb-8">
-          <table className="w-full border-collapse">
+        <div className="overflow-x-auto mb-6 md:mb-8">
+          <table className="w-full border-collapse text-xs md:text-base">
             <thead>
               <tr className="bg-blue-100">
-                <th className="border border-gray-300 p-3 text-left">Expresie</th>
-                <th className="border border-gray-300 p-3 text-left">Tip de date</th>
-                <th className="border border-gray-300 p-3 text-left">Valoarea</th>
-                <th className="border border-gray-300 p-3 text-center w-16">Status</th>
+                <th className="border border-gray-300 p-2 md:p-3 text-left text-xs md:text-base">Expresie</th>
+                <th className="border border-gray-300 p-2 md:p-3 text-left text-xs md:text-base">Tip de date</th>
+                <th className="border border-gray-300 p-2 md:p-3 text-left text-xs md:text-base">Valoarea</th>
+                <th className="border border-gray-300 p-2 md:p-3 text-center text-xs md:text-base w-12 md:w-16">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -121,33 +121,33 @@ const ExpressionExercise: React.FC<ExpressionExerciseProps> = ({ variants }) => 
                 return (
                   <tr key={expr} className={`hover:bg-gray-50 ${showExpressionResults[currentVariant] && hasAnswer ?
                       (isCorrect ? 'bg-green-50' : 'bg-red-50') : ''}`}>
-                    <td className="border border-gray-300 p-3 font-mono font-semibold text-lg">{expr}</td>
-                    <td className="border border-gray-300 p-3">
+                    <td className="border border-gray-300 p-2 md:p-3 font-mono font-semibold text-xs md:text-lg">{expr}</td>
+                    <td className="border border-gray-300 p-2 md:p-3">
                       <input type="text" value={currentAnswers[expr]?.type || ''}
                         onChange={(e) => handleExpressionTypeChange(expr, e.target.value.toLowerCase())}
-                        disabled={showExpressionResults[currentVariant]} placeholder="int, float, bool..."
-                        className="w-full p-2 border-2 rounded focus:outline-none focus:border-blue-500 disabled:bg-gray-100" />
+                        disabled={showExpressionResults[currentVariant]} placeholder="int, float..."
+                        className="w-full p-1 md:p-2 text-xs md:text-base border-2 rounded focus:outline-none focus:border-blue-500 disabled:bg-gray-100" />
                       {showExpressionResults[currentVariant] && hasAnswer && !isCorrect && (
                         <span className="text-xs text-red-600 mt-1 block">
                           Corect: <strong>{exercises[expr].type}</strong>
                         </span>
                       )}
                     </td>
-                    <td className="border border-gray-300 p-3">
+                    <td className="border border-gray-300 p-2 md:p-3">
                       <input type="text" value={currentAnswers[expr]?.value || ''}
                         onChange={(e) => handleExpressionValueChange(expr, e.target.value)}
-                        disabled={showExpressionResults[currentVariant]} placeholder="Valoarea..."
-                        className="w-full p-2 border-2 rounded focus:outline-none focus:border-blue-500 disabled:bg-gray-100" />
+                        disabled={showExpressionResults[currentVariant]} placeholder="Val..."
+                        className="w-full p-1 md:p-2 text-xs md:text-base border-2 rounded focus:outline-none focus:border-blue-500 disabled:bg-gray-100" />
                       {showExpressionResults[currentVariant] && hasAnswer && !isCorrect && (
                         <span className="text-xs text-red-600 mt-1 block">
                           Corect: <strong>{exercises[expr].value.toString()}</strong>
                         </span>
                       )}
                     </td>
-                    <td className="border border-gray-300 p-3 text-center">
+                    <td className="border border-gray-300 p-2 md:p-3 text-center">
                       {showExpressionResults[currentVariant] && hasAnswer && (isCorrect ?
-                        <CheckCircle className="w-7 h-7 text-green-500 mx-auto" /> :
-                        <XCircle className="w-7 h-7 text-red-500 mx-auto" />)}
+                        <CheckCircle className="w-5 h-5 md:w-7 md:h-7 text-green-500 mx-auto" /> :
+                        <XCircle className="w-5 h-5 md:w-7 md:h-7 text-red-500 mx-auto" />)}
                     </td>
                   </tr>
                 );
@@ -156,18 +156,18 @@ const ExpressionExercise: React.FC<ExpressionExerciseProps> = ({ variants }) => 
           </table>
         </div>
         {showExpressionResults[currentVariant] && (
-          <div className="ml-auto flex items-center gap-3 bg-blue-100 px-6 py-3 rounded-lg">
-            <Award className="w-6 h-6 text-blue-600" />
-            <span className="text-xl font-bold text-blue-900">Scor: {getExpressionScore()} / {Object.keys(exercises).length}</span>
+          <div className="ml-auto flex items-center gap-2 md:gap-3 bg-blue-100 px-3 md:px-6 py-2 md:py-3 rounded-lg">
+            <Award className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
+            <span className="text-sm md:text-xl font-bold text-blue-900">Scor: {getExpressionScore()} / {Object.keys(exercises).length}</span>
           </div>
         )}
       </div>
-      <div className="flex gap-4 items-center mt-6">
+      <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-center mt-4 md:mt-6">
         <button onClick={checkExpressionAnswers} disabled={Object.keys(currentAnswers).length === 0}
-          className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed shadow-lg">
+          className="w-full md:w-auto bg-blue-600 text-white px-4 md:px-8 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base hover:bg-blue-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed shadow-lg">
           Verifică Răspunsurile
         </button>
-        <button onClick={resetExpressionExercise} className="bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-600 transition shadow-lg">
+        <button onClick={resetExpressionExercise} className="w-full md:w-auto bg-gray-500 text-white px-4 md:px-8 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base hover:bg-gray-600 transition shadow-lg">
           Resetează
         </button>
       </div>

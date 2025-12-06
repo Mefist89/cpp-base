@@ -126,35 +126,35 @@ const TruthTableExercises: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-100 p-6 flex items-center justify-center">
+        <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-100 p-3 md:p-6 flex items-center justify-center">
             <div className="max-w-6xl w-full">
-                <div className="flex justify-between items-center mb-6">
-                    <Link to="/" className="inline-flex items-center gap-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition shadow">
-                        <ArrowLeft size={20} />
-                        <span>Înapoi la meniu</span>
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 md:gap-4 mb-3 md:mb-6">
+                    <Link to="/" className="w-full md:w-auto inline-flex items-center gap-2 bg-gray-200 text-gray-800 px-3 md:px-4 py-1.5 md:py-2 rounded-lg font-semibold text-sm md:text-base hover:bg-gray-300 transition shadow">
+                        <ArrowLeft size={16} />
+                        <span>Înapoi</span>
                     </Link>
-                    <Link to="/expressions" className="inline-flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-700 transition shadow">
-                        <span>Exercițiul următor</span>
-                        <ArrowRight size={20} />
+                    <Link to="/expressions" className="w-full md:w-auto inline-flex items-center gap-2 bg-purple-600 text-white px-3 md:px-4 py-1.5 md:py-2 rounded-lg font-semibold text-sm md:text-base hover:bg-purple-700 transition shadow">
+                        <span>Următor</span>
+                        <ArrowRight size={16} />
                     </Link>
                 </div>
-                <div className="bg-white rounded-xl shadow-2xl p-8">
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">3</div>
+                <div className="bg-white rounded-xl shadow-2xl p-4 md:p-8">
+                    <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+                        <div className="bg-indigo-600 text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center font-bold text-base md:text-xl">3</div>
                         <div>
-                            <h2 className="text-3xl font-bold text-indigo-900">Alcătuiți tabelul de adevăr pentru funcția</h2>
+                            <h2 className="text-xl md:text-3xl font-bold text-indigo-900">Alcătuiți tabelul de adevăr pentru funcția</h2>
                         </div>
                     </div>
 
                     {/* Variant Buttons */}
-                    <div className="flex gap-2 mb-6">
+                    <div className="flex gap-2 mb-4 md:mb-6 justify-center flex-wrap">
                         {truthTableVariants.map((_, idx) => (
                             <button
                                 key={idx}
                                 onClick={() => setCurrentVariant(idx)}
-                                className={`px-4 py-2 rounded-lg font-semibold transition ${
+                                className={`w-10 h-10 md:w-auto md:px-4 md:py-2 rounded-lg font-semibold transition text-sm md:text-base ${
                                     currentVariant === idx
-                                        ? 'bg-purple-600 text-white scale-110'
+                                        ? 'bg-purple-600 text-white scale-100 md:scale-110'
                                         : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
                                 }`}
                             >
@@ -163,68 +163,68 @@ const TruthTableExercises: React.FC = () => {
                         ))}
                     </div>
 
-                    <div className="bg-indigo-50 border-2 border-indigo-300 rounded-lg p-6 mb-6">
-                        <p className="text-2xl font-bold text-center text-indigo-900">
+                    <div className="bg-indigo-50 border-2 border-indigo-300 rounded-lg p-3 md:p-6 mb-4 md:mb-6">
+                        <p className="text-lg md:text-2xl font-bold text-center text-indigo-900">
                             {variant.formula}
                         </p>
                     </div>
 
-                    <div className="mb-6 bg-yellow-50 border border-yellow-300 rounded-lg p-4">
+                    <div className="mb-4 md:mb-6 bg-yellow-50 border border-yellow-300 rounded-lg p-3 md:p-4">
                         <div className="flex items-start gap-2">
-                            <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
-                            <div className="text-sm text-gray-700">
+                            <AlertCircle className="w-4 h-4 md:w-5 md:h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+                            <div className="text-xs md:text-sm text-gray-700">
                                 <p className="font-semibold mb-1">Instrucțiuni:</p>
                                 <p>Completați tabelul cu valori <strong>0</strong> sau <strong>1</strong> pentru fiecare celulă.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto mb-6">
-                        <table className="w-full border-collapse">
+                    <div className="overflow-x-auto mb-4 md:mb-6">
+                        <table className="w-full border-collapse text-xs md:text-base">
                             <thead>
                                 <tr className="bg-indigo-200">
-                                    <th className="border-2 border-gray-400 p-3 text-base font-bold">x₁</th>
-                                    <th className="border-2 border-gray-400 p-3 text-base font-bold">x₂</th>
-                                    <th className="border-2 border-gray-400 p-3 text-base font-bold">x₃</th>
-                                    <th className="border-2 border-gray-400 p-3 text-base font-bold text-red-600">NOT x₃</th>
-                                    <th className="border-2 border-gray-400 p-3 text-base font-bold">NOT x₃ OR x₂</th>
-                                    <th className="border-2 border-gray-400 p-3 text-base font-bold">x₁ AND x₂</th>
-                                    <th className="border-2 border-gray-400 p-3 text-base font-bold bg-indigo-300">y</th>
+                                    <th className="border-2 border-gray-400 p-1 md:p-3 text-xs md:text-base font-bold">x₁</th>
+                                    <th className="border-2 border-gray-400 p-1 md:p-3 text-xs md:text-base font-bold">x₂</th>
+                                    <th className="border-2 border-gray-400 p-1 md:p-3 text-xs md:text-base font-bold">x₃</th>
+                                    <th className="border-2 border-gray-400 p-1 md:p-3 text-xs md:text-base font-bold text-red-600">NOT x₃</th>
+                                    <th className="border-2 border-gray-400 p-1 md:p-3 text-xs md:text-base font-bold">NOT x₃ OR x₂</th>
+                                    <th className="border-2 border-gray-400 p-1 md:p-3 text-xs md:text-base font-bold">x₁ AND x₂</th>
+                                    <th className="border-2 border-gray-400 p-1 md:p-3 text-xs md:text-base font-bold bg-indigo-300">y</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {truthTableRows.map((row, rowIndex) => (
                                     <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                                        <td className="border border-gray-400 p-2 text-center font-bold text-base bg-gray-100">{row.x1}</td>
-                                        <td className="border border-gray-400 p-2 text-center font-bold text-base bg-gray-100">{row.x2}</td>
-                                        <td className="border border-gray-400 p-2 text-center font-bold text-base bg-gray-100">{row.x3}</td>
+                                        <td className="border border-gray-400 p-1 md:p-2 text-center font-bold text-xs md:text-base bg-gray-100">{row.x1}</td>
+                                        <td className="border border-gray-400 p-1 md:p-2 text-center font-bold text-xs md:text-base bg-gray-100">{row.x2}</td>
+                                        <td className="border border-gray-400 p-1 md:p-2 text-center font-bold text-xs md:text-base bg-gray-100">{row.x3}</td>
 
                                         <td className={getTruthTableCellClass(rowIndex, 'not_x3')}>
                                             <input type="text" maxLength={1} value={currentAnswers[rowIndex].not_x3}
                                                 onChange={(e) => handleTruthTableInput(rowIndex, 'not_x3', e.target.value)}
                                                 disabled={showTruthTableResults[currentVariant]} placeholder="?"
-                                                className="w-full text-center text-base font-bold border-2 border-gray-300 rounded p-1 focus:outline-none focus:border-indigo-500 disabled:bg-transparent" />
+                                                className="w-full text-center text-xs md:text-base font-bold border-2 border-gray-300 rounded p-0.5 md:p-1 focus:outline-none focus:border-indigo-500 disabled:bg-transparent" />
                                         </td>
 
                                         <td className={getTruthTableCellClass(rowIndex, 'x2_OR_notx3')}>
                                             <input type="text" maxLength={1} value={currentAnswers[rowIndex].x2_OR_notx3}
                                                 onChange={(e) => handleTruthTableInput(rowIndex, 'x2_OR_notx3', e.target.value)}
                                                 disabled={showTruthTableResults[currentVariant]} placeholder="?"
-                                                className="w-full text-center text-base font-bold border-2 border-gray-300 rounded p-1 focus:outline-none focus:border-indigo-500 disabled:bg-transparent" />
+                                                className="w-full text-center text-xs md:text-base font-bold border-2 border-gray-300 rounded p-0.5 md:p-1 focus:outline-none focus:border-indigo-500 disabled:bg-transparent" />
                                         </td>
 
                                         <td className={getTruthTableCellClass(rowIndex, 'x1_AND_x2')}>
                                             <input type="text" maxLength={1} value={currentAnswers[rowIndex].x1_AND_x2}
                                                 onChange={(e) => handleTruthTableInput(rowIndex, 'x1_AND_x2', e.target.value)}
                                                 disabled={showTruthTableResults[currentVariant]} placeholder="?"
-                                                className="w-full text-center text-base font-bold border-2 border-gray-300 rounded p-1 focus:outline-none focus:border-indigo-500 disabled:bg-transparent" />
+                                                className="w-full text-center text-xs md:text-base font-bold border-2 border-gray-300 rounded p-0.5 md:p-1 focus:outline-none focus:border-indigo-500 disabled:bg-transparent" />
                                         </td>
 
                                         <td className={getTruthTableCellClass(rowIndex, 'y')}>
                                             <input type="text" maxLength={1} value={currentAnswers[rowIndex].y}
                                                 onChange={(e) => handleTruthTableInput(rowIndex, 'y', e.target.value)}
                                                 disabled={showTruthTableResults[currentVariant]} placeholder="?"
-                                                className="w-full text-center text-base font-bold border-2 border-gray-300 rounded p-1 focus:outline-none focus:border-indigo-500 disabled:bg-transparent bg-indigo-50" />
+                                                className="w-full text-center text-xs md:text-base font-bold border-2 border-gray-300 rounded p-0.5 md:p-1 focus:outline-none focus:border-indigo-500 disabled:bg-transparent bg-indigo-50" />
                                         </td>
                                     </tr>
                                 ))}
@@ -232,17 +232,17 @@ const TruthTableExercises: React.FC = () => {
                         </table>
                     </div>
                     {showTruthTableResults[currentVariant] && (
-                        <div className="ml-auto flex items-center gap-3 bg-indigo-100 px-6 py-3 rounded-lg">
-                            <Award className="w-6 h-6 text-indigo-600" />
-                            <span className="text-xl font-bold text-indigo-900">
+                        <div className="ml-auto flex items-center gap-2 md:gap-3 bg-indigo-100 px-3 md:px-6 py-2 md:py-3 rounded-lg">
+                            <Award className="w-5 h-5 md:w-6 md:h-6 text-indigo-600" />
+                            <span className="text-sm md:text-xl font-bold text-indigo-900">
                                 Scor: {getTruthTableScore().correct} / {getTruthTableScore().total}
                             </span>
                         </div>
                     )}
                     {showTruthTableResults[currentVariant] && (
-                        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                            <h3 className="font-semibold text-lg mb-2 text-blue-900">Răspunsuri corecte:</h3>
-                            <div className="grid grid-cols-2 gap-3 text-sm">
+                        <div className="mt-4 md:mt-6 p-3 md:p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                            <h3 className="font-semibold text-sm md:text-lg mb-2 text-blue-900">Răspunsuri corecte:</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 text-xs">
                                 {truthTableRows.map((row, idx) => (
                                     <div key={idx} className="bg-white p-2 rounded border">
                                         <span className="font-mono text-xs">
