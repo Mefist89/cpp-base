@@ -1,4 +1,5 @@
 import TypeExercise from '../components/exercises/TypeExercise';
+import ExerciseNavigation from '../components/ExerciseNavigation';
 
 const typeExercisesData = [
   { id: 'a', value: '15.25', correctType: 'float' },
@@ -11,11 +12,12 @@ const typeExercisesData = [
 
 const TypeExercisePage = () => {
   return (
-    <TypeExercise 
-      exercises={typeExercisesData}
-      nextExercisePath="/expressions"
-      previousExercisePath="/"
-    />
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-100 p-6 flex flex-col items-center justify-center">
+      <ExerciseNavigation />
+      <TypeExercise
+        exercises={typeExercisesData}
+      />
+    </div>
   );
 };
 

@@ -1,7 +1,8 @@
 import ExpressionExercise from '../components/exercises/ExpressionExercise';
+import ExerciseNavigation from '../components/ExerciseNavigation';
 
 const expressionExercisesData = {
- 'a+b': { type: 'int', value: 12 },
+  'a+b': { type: 'int', value: 12 },
   'a+2*b': { type: 'int', value: 20 },
   'b/a+3.5': { type: 'float', value: 5.5 },
   'q!=z': { type: 'bool', value: false },
@@ -13,11 +14,12 @@ const expressionExercisesData = {
 
 const ExpressionExercisePage = () => {
   return (
-    <ExpressionExercise 
-      exercises={expressionExercisesData}
-      nextExercisePath="/truth-tables"
-      previousExercisePath="/"
-    />
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6 flex flex-col items-center justify-center">
+      <ExerciseNavigation />
+      <ExpressionExercise
+        exercises={expressionExercisesData}
+      />
+    </div>
   );
 };
 
