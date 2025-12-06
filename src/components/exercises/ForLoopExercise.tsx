@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, XCircle, Award, Info, ArrowLeft } from 'lucide-react';
+import VariantButtons from '../VariantButtons';
 
 interface LoopExercise {
   id: number;
@@ -139,22 +140,12 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ variants, previousExe
             Instrucțiuni Repetitive - Exercițiu
           </h1>
 
-          {/* Variant Buttons */}
-          <div className="flex gap-2 mb-6">
-            {variants.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentVariant(idx)}
-                className={`px-4 py-2 rounded-lg font-semibold transition ${
-                  currentVariant === idx
-                    ? 'bg-purple-600 text-white scale-110'
-                    : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
-                }`}
-              >
-                {idx + 1}
-              </button>
-            ))}
-          </div>
+          <VariantButtons 
+            totalVariants={variants.length}
+            currentVariant={currentVariant}
+            onVariantChange={setCurrentVariant}
+            color="purple"
+          />
 
           <div className="bg-green-50 border-2 border-green-300 rounded-lg p-5 mb-6">
             <h2 className="text-xl font-semibold text-green-900 mb-3">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CheckCircle, XCircle, Award, Info } from 'lucide-react';
+import VariantButtons from '../VariantButtons';
 
 interface Exercise {
   id: number;
@@ -76,22 +77,12 @@ const ExpressionValuesExercise: React.FC<ExpressionValuesExerciseProps> = ({ var
             Instructiuni si Expresii - Valori
           </h1>
 
-          {/* Variant Buttons */}
-          <div className="flex gap-3 mb-8 justify-center">
-            {variants.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentVariant(index)}
-                className={`w-12 h-12 rounded-full font-bold text-lg transition transform ${
-                  currentVariant === index
-                    ? 'bg-purple-600 text-white scale-110 shadow-lg'
-                    : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
-                }`}
-              >
-                {index + 1}
-              </button>
-            ))}
-          </div>
+          <VariantButtons 
+            totalVariants={variants.length}
+            currentVariant={currentVariant}
+            onVariantChange={setCurrentVariant}
+            color="purple"
+          />
 
           <div className="bg-orange-50 border-2 border-orange-300 rounded-lg p-5 mb-6">
             <h2 className="text-xl font-semibold text-orange-900 mb-3">

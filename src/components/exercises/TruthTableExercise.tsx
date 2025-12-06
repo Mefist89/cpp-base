@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Award, AlertCircle } from 'lucide-react';
+import VariantButtons from '../VariantButtons';
 
 interface TruthTableAnswers {
   not_x3: string;
@@ -101,22 +102,12 @@ const TruthTableExercise: React.FC<TruthTableExerciseProps> = ({ variants }) => 
           </div>
         </div>
 
-        {/* Variant Buttons */}
-        <div className="flex gap-2 mb-6">
-          {variants.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentVariant(idx)}
-              className={`px-4 py-2 rounded-lg font-semibold transition ${
-                currentVariant === idx
-                  ? 'bg-purple-600 text-white scale-110'
-                  : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
-              }`}
-            >
-              {idx + 1}
-            </button>
-          ))}
-        </div>
+        <VariantButtons 
+          totalVariants={variants.length}
+          currentVariant={currentVariant}
+          onVariantChange={setCurrentVariant}
+          color="indigo"
+        />
 
         <div className="bg-indigo-50 border-2 border-indigo-300 rounded-lg p-6 mb-6">
           <p className="text-2xl font-bold text-center text-indigo-900">

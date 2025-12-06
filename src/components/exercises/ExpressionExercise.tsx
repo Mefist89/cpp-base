@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CheckCircle, XCircle, Award } from 'lucide-react';
+import VariantButtons from '../VariantButtons';
 
 interface ExpressionExerciseData {
   [key: string]: {
@@ -79,24 +80,6 @@ const ExpressionExercise: React.FC<ExpressionExerciseProps> = ({ variants }) => 
   const currentAnswers = expressionAnswers[currentVariant] || {};
 
   return (
-    <div className="max-w-6xl w-full">
-      {/* Variant buttons */}
-      <div className="flex gap-2 mb-6 justify-center">
-        {variants.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentVariant(index)}
-            className={`w-10 h-10 rounded-full font-bold text-lg transition-all ${
-              currentVariant === index
-                ? 'bg-blue-600 text-white shadow-lg scale-110'
-                : 'bg-gray-300 text-gray-800 hover:bg-gray-400'
-            }`}
-          >
-            {index + 1}
-          </button>
-        ))}
-      </div>
-
       <div className="bg-white rounded-xl shadow-2xl p-8">
         <div className="flex items-center gap-3 mb-6">
           <div className="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">{currentVariant + 1}</div>
@@ -105,7 +88,13 @@ const ExpressionExercise: React.FC<ExpressionExerciseProps> = ({ variants }) => 
             <p className="text-gray-600">Dată fiind declarațiile variabilelor</p>
           </div>
         </div>
-
+        <div className="max-w-6xl w-full">
+      <VariantButtons 
+        totalVariants={variants.length}
+        currentVariant={currentVariant}
+        onVariantChange={setCurrentVariant}
+        color="blue"
+      />
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
           <code className="text-sm font-mono">
             <strong>int</strong> a = 4, b = 8;<br />

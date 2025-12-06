@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CheckCircle, XCircle, Award } from 'lucide-react';
+import VariantButtons from '../VariantButtons';
 
 interface TypeExerciseData {
   id: string;
@@ -58,24 +59,6 @@ const TypeExercise: React.FC<TypeExerciseProps> = ({ variants }) => {
   const currentAnswers = typeAnswers[currentVariant] || {};
 
   return (
-    <div className="max-w-4xl w-full">
-      {/* Variant buttons */}
-      <div className="flex gap-2 mb-6 justify-center">
-        {variants.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentVariant(index)}
-            className={`w-10 h-10 rounded-full font-bold text-lg transition-all ${
-              currentVariant === index
-                ? 'bg-purple-600 text-white shadow-lg scale-110'
-                : 'bg-gray-300 text-gray-800 hover:bg-gray-400'
-            }`}
-          >
-            {index + 1}
-          </button>
-        ))}
-      </div>
-
       <div className="bg-white rounded-xl shadow-2xl p-8">
         <div className="flex items-center gap-3 mb-6">
           <div className="bg-purple-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">{currentVariant + 1}</div>
@@ -84,7 +67,13 @@ const TypeExercise: React.FC<TypeExerciseProps> = ({ variants }) => {
             <p className="text-gray-600">Introduceți tipul corect de date pentru fiecare valoare (int, float, char, bool)</p>
           </div>
         </div>
-
+      <div className="max-w-4xl w-full">
+      <VariantButtons 
+        totalVariants={variants.length}
+        currentVariant={currentVariant}
+        onVariantChange={setCurrentVariant}
+        color="purple"
+      />
         <div className="space-y-4 mb-8">
           {exercises.map((exercise) => (
             <div key={exercise.id} className={`border-2 rounded-lg p-5 transition-all ${
