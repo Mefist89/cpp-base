@@ -31,17 +31,17 @@ const VariantButtons: React.FC<VariantButtonsProps> = ({
   const colors = colorMap[color];
 
   return (
-    <div className="flex gap-3 mb-8 justify-center flex-wrap">
+    <div className="flex gap-2 md:gap-3 mb-6 md:mb-8 justify-center flex-wrap">
       {Array.from({ length: totalVariants }).map((_, index) => (
         <button
           key={index}
           onClick={() => onVariantChange(index)}
           className={`
-            w-12 h-12 rounded-full font-bold text-lg transition-all 
+            w-10 h-10 md:w-12 md:h-12 rounded-full font-bold text-base md:text-lg transition-all 
             flex items-center justify-center shadow-md hover:shadow-lg
             ${
               currentVariant === index
-                ? `${colors.active} scale-110`
+                ? `${colors.active} scale-100 md:scale-110`
                 : `${colors.inactive} hover:bg-gray-400`
             }
           `}

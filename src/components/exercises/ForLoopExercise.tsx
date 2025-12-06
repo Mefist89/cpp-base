@@ -124,19 +124,19 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ variants, previousExe
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-green-50 to-teal-100 p-6 flex items-start justify-center">
+    <div className="w-full min-h-screen bg-gradient-to-br from-green-50 to-teal-100 p-3 md:p-6 flex items-start justify-center">
       <div className="max-w-5xl w-full">
         
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-3 md:mb-6">
           {previousExercisePath && (
-            <Link to={previousExercisePath} className="inline-flex items-center gap-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-gray-300 transition shadow">
-              <ArrowLeft size={20} />
-              <span>Înapoi la meniu</span>
+            <Link to={previousExercisePath} className="inline-flex items-center gap-2 bg-gray-200 text-gray-800 px-3 md:px-4 py-1.5 md:py-2 rounded-lg font-semibold text-sm md:text-base hover:bg-gray-300 transition shadow">
+              <ArrowLeft size={16} />
+              <span>Înapoi</span>
             </Link>
           )}
         </div>
-        <div className="bg-white rounded-xl shadow-2xl p-8">
-          <h1 className="text-3xl font-bold text-green-900 mb-6">
+        <div className="bg-white rounded-xl shadow-2xl p-4 md:p-8">
+          <h1 className="text-xl md:text-3xl font-bold text-green-900 mb-4 md:mb-6">
             Instrucțiuni Repetitive - Exercițiu
           </h1>
 
@@ -147,29 +147,29 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ variants, previousExe
             color="purple"
           />
 
-          <div className="bg-green-50 border-2 border-green-300 rounded-lg p-5 mb-6">
-            <h2 className="text-xl font-semibold text-green-900 mb-3">
+          <div className="bg-green-50 border-2 border-green-300 rounded-lg p-3 md:p-5 mb-4 md:mb-6">
+            <h2 className="text-base md:text-xl font-semibold text-green-900 mb-2 md:mb-3">
               Fie date declarațiile și următoarele instrucțiuni de atribuire:
             </h2>
-            <code className="text-lg font-mono block bg-white p-4 rounded border">
+            <code className="text-sm md:text-lg font-mono block bg-white p-2 md:p-4 rounded border">
               <strong>int</strong> m, n, i; m = 5; n = 3;
             </code>
           </div>
 
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold text-green-900 mb-4">
+          <div className="mb-6 md:mb-8">
+            <h3 className="text-lg md:text-2xl font-bold text-green-900 mb-3 md:mb-4">
               a) Pentru fiecare instrucțiune repetitivă scrieți numărul de repetări:
             </h3>
             
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
+              <table className="w-full border-collapse text-xs md:text-base">
                 <thead>
                   <tr className="bg-green-200">
-                    <th className="border-2 border-gray-400 p-4 text-left text-lg font-bold">
+                    <th className="border-2 border-gray-400 p-2 md:p-4 text-left text-xs md:text-lg font-bold">
                       Instrucțiuni repetitive
                     </th>
-                    <th className="border-2 border-gray-400 p-4 text-center text-lg font-bold w-64">
-                      Numărul de repetări
+                    <th className="border-2 border-gray-400 p-2 md:p-4 text-center text-xs md:text-lg font-bold w-32 md:w-64">
+                      Repetări
                     </th>
                   </tr>
                 </thead>
@@ -177,21 +177,21 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ variants, previousExe
                   {loopExercises.map((exercise, index) => (
                     <React.Fragment key={exercise.id}>
                       <tr className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                        <td className="border-2 border-gray-400 p-4">
-                          <code className="text-base font-mono">{exercise.code}</code>
+                        <td className="border-2 border-gray-400 p-2 md:p-4">
+                          <code className="text-xs md:text-base font-mono">{exercise.code}</code>
                         </td>
-                        <td className={`border-2 border-gray-400 p-4 ${
+                        <td className={`border-2 border-gray-400 p-2 md:p-4 ${
                           showResults[currentVariant] && currentLoopAnswers[exercise.id] ? 
                             (isLoopCorrect(exercise.id) ? 'bg-green-100' : 'bg-red-100') : ''
                         }`}>
-                          <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-2 md:gap-3">
                             <input
                               type="number"
                               value={currentLoopAnswers[exercise.id] || ''}
                               onChange={(e) => handleLoopAnswerChange(exercise.id, e.target.value)}
                               disabled={showResults[currentVariant]}
-                              placeholder="Număr..."
-                              className="w-full p-3 text-center text-lg font-bold border-2 border-gray-300 rounded focus:outline-none focus:border-green-500 disabled:bg-gray-100"
+                              placeholder="Nr..."
+                              className="w-full p-2 md:p-3 text-center text-xs md:text-lg font-bold border-2 border-gray-300 rounded focus:outline-none focus:border-green-500 disabled:bg-gray-100"
                             />
                             {showResults[currentVariant] && currentLoopAnswers[exercise.id] && (
                               isLoopCorrect(exercise.id) ? 
@@ -216,17 +216,17 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ variants, previousExe
             </div>
           </div>
 
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold text-green-900 mb-4">
+          <div className="mb-6 md:mb-8">
+            <h3 className="text-lg md:text-2xl font-bold text-green-900 mb-3 md:mb-4">
               b) Bifați în următoarea listă tipul de date a valorii '*':
             </h3>
             
-            <div className={`border-2 rounded-lg p-6 ${
+            <div className={`border-2 rounded-lg p-3 md:p-6 ${
               showResults[currentVariant] ? (isTypeCorrect() ? 'border-green-400 bg-green-50' : 'border-red-400 bg-red-50') : 'border-gray-300'
             }`}>
-              <div className="flex items-center gap-6 justify-center">
+              <div className="flex flex-wrap items-center gap-3 md:gap-6 justify-center">
                 {typeOptions.map((type) => (
-                  <label key={type} className="flex items-center gap-3 cursor-pointer">
+                  <label key={type} className="flex items-center gap-2 md:gap-3 cursor-pointer">
                     <input
                       type="radio"
                       name="dataType"
@@ -234,9 +234,9 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ variants, previousExe
                       checked={currentTypeAnswer === type}
                       onChange={() => handleTypeAnswerChange(type)}
                       disabled={showResults[currentVariant]}
-                      className="w-6 h-6 cursor-pointer"
+                      className="w-4 h-4 md:w-6 md:h-6 cursor-pointer"
                     />
-                    <span className="text-2xl font-semibold">{type}</span>
+                    <span className="text-base md:text-2xl font-semibold">{type}</span>
                   </label>
                 ))}
               </div>
@@ -261,26 +261,26 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ variants, previousExe
             </div>
           </div>
 
-          <div className="flex gap-4 items-center">
+          <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-center">
             <button
               onClick={checkAnswers}
               disabled={Object.keys(currentLoopAnswers).length === 0 && !currentTypeAnswer}
-              className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed shadow-lg text-lg"
+              className="w-full md:w-auto bg-green-600 text-white px-4 md:px-8 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-lg hover:bg-green-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed shadow-lg"
             >
               Verifică Răspunsurile
             </button>
             
             <button
               onClick={resetExercise}
-              className="bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-600 transition shadow-lg text-lg"
+              className="w-full md:w-auto bg-gray-500 text-white px-4 md:px-8 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-lg hover:bg-gray-600 transition shadow-lg"
             >
               Resetează
             </button>
 
             {showResults[currentVariant] && (
-              <div className="ml-auto flex items-center gap-3 bg-green-100 px-6 py-3 rounded-lg">
-                <Award className="w-6 h-6 text-green-600" />
-                <span className="text-xl font-bold text-green-900">
+              <div className="w-full md:w-auto md:ml-auto flex items-center gap-2 md:gap-3 bg-green-100 px-3 md:px-6 py-2 md:py-3 rounded-lg">
+                <Award className="w-5 h-5 md:w-6 md:h-6 text-green-600" />
+                <span className="text-sm md:text-xl font-bold text-green-900">
                   Scor: {getTotalScore()} / {loopExercises.length + 1}
                 </span>
               </div>

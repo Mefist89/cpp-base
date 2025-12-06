@@ -69,11 +69,11 @@ const ExpressionValuesExercise: React.FC<ExpressionValuesExerciseProps> = ({ var
   const currentExercises = variants[currentVariant] || [];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-100 p-6">
-      <div className="max-w-5xl mx-auto space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-100 p-3 md:p-6">
+      <div className="max-w-5xl mx-auto space-y-6 md:space-y-8">
         
-        <div className="bg-white rounded-xl shadow-2xl p-8">
-          <h1 className="text-3xl font-bold text-orange-900 mb-6">
+        <div className="bg-white rounded-xl shadow-2xl p-4 md:p-8">
+          <h1 className="text-xl md:text-3xl font-bold text-orange-900 mb-4 md:mb-6">
             Instructiuni si Expresii - Valori
           </h1>
 
@@ -84,29 +84,29 @@ const ExpressionValuesExercise: React.FC<ExpressionValuesExerciseProps> = ({ var
             color="purple"
           />
 
-          <div className="bg-orange-50 border-2 border-orange-300 rounded-lg p-5 mb-6">
-            <h2 className="text-xl font-semibold text-orange-900 mb-3">
+          <div className="bg-orange-50 border-2 border-orange-300 rounded-lg p-3 md:p-5 mb-4 md:mb-6">
+            <h2 className="text-base md:text-xl font-semibold text-orange-900 mb-2 md:mb-3">
               Fie date declaratiile de variabile:
             </h2>
-            <code className="text-lg font-mono block bg-white p-4 rounded border space-y-1">
+            <code className="text-sm md:text-lg font-mono block bg-white p-2 md:p-4 rounded border space-y-1">
               <div><strong>int</strong> a=9, b=5, i;</div>
               <div><strong>bool</strong> c=true;</div>
               <div><strong>float</strong> d=2.5;</div>
             </code>
           </div>
 
-          <h3 className="text-2xl font-bold text-orange-900 mb-4">
+          <h3 className="text-lg md:text-2xl font-bold text-orange-900 mb-3 md:mb-4">
             Determinati valoarea afisata de urmatoarele instructiuni:
           </h3>
 
-          <div className="overflow-x-auto mb-6">
-            <table className="w-full border-collapse">
+          <div className="overflow-x-auto mb-4 md:mb-6">
+            <table className="w-full border-collapse text-xs md:text-base">
               <thead>
                 <tr className="bg-orange-200">
-                  <th className="border-2 border-gray-400 p-4 text-left text-lg font-bold w-1/2">
+                  <th className="border-2 border-gray-400 p-2 md:p-4 text-left text-xs md:text-lg font-bold w-1/2">
                     Instructiuni repetitive
                   </th>
-                  <th className="border-2 border-gray-400 p-4 text-center text-lg font-bold">
+                  <th className="border-2 border-gray-400 p-2 md:p-4 text-center text-xs md:text-lg font-bold">
                     Valoare
                   </th>
                 </tr>
