@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, XCircle, Award, Info, ArrowLeft } from 'lucide-react';
 
@@ -9,43 +9,97 @@ interface LoopExercise {
   explanation: string;
 }
 
-interface ForLoopExerciseProps {
+interface ForLoopVariant {
   loopExercises: LoopExercise[];
   typeOptions: string[];
   correctType: string;
+}
+
+interface ForLoopExerciseProps {
+  variants: ForLoopVariant[];
   previousExercisePath?: string;
 }
 
-const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ loopExercises, typeOptions, correctType, previousExercisePath }) => {
-  const [loopAnswers, setLoopAnswers] = useState<Record<number, string>>({});
-  const [typeAnswer, setTypeAnswer] = useState('');
-  const [showResults, setShowResults] = useState(false);
+const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ variants, previousExercisePath }) => {
+  console.log('ForLoopExercise rendered', variants);
+  const [currentVariant, setCurrentVariant] = useState(0);
+  const [loopAnswers, setLoopAnswers] = useState<{ [key: number]: Record<number, string> }>({
+    0: {}
+  });
+  const [typeAnswers, setTypeAnswers] = useState<{ [key: number]: string }>({
+    0: ''
+  });
+  const [showResults, setShowResults] = useState<boolean[]>(Array(variants.length).fill(false));
+
+  // Validate variants
+  if (!variants || variants.length === 0) {
+    return <div className="text-center text-red-600 font-bold p-8">No variants provided</div>;
+  }
+
+  const variant = variants[currentVariant];
+  
+  if (!variant) {
+    return <div className="text-center text-red-600 font-bold p-8">Invalid variant</div>;
+  }
+
+  const { loopExercises, typeOptions, correctType } = variant;
+
+  // Initialize answers for current variant if not exists
+  useEffect(() => {
+    if (!loopAnswers[currentVariant]) {
+      setLoopAnswers(prev => ({
+        ...prev,
+        [currentVariant]: {}
+      }));
+    }
+    if (!typeAnswers[currentVariant]) {
+      setTypeAnswers(prev => ({
+        ...prev,
+        [currentVariant]: ''
+      }));
+    }
+  }, [currentVariant]);
+
+  const currentLoopAnswers = loopAnswers[currentVariant] || {};
+  const currentTypeAnswer = typeAnswers[currentVariant] || '';
 
   const handleLoopAnswerChange = (id: number, value: string) => {
-    setLoopAnswers(prev => ({
-      ...prev,
-      [id]: value
-    }));
+    const newAnswers = { ...loopAnswers };
+    if (!newAnswers[currentVariant]) {
+      newAnswers[currentVariant] = {};
+    }
+    newAnswers[currentVariant][id] = value;
+    setLoopAnswers(newAnswers);
   };
 
   const handleTypeAnswerChange = (type: string) => {
-    setTypeAnswer(type);
+    const newAnswers = { ...typeAnswers };
+    newAnswers[currentVariant] = type;
+    setTypeAnswers(newAnswers);
   };
 
   const checkAnswers = () => {
-    setShowResults(true);
+    const newShowResults = [...showResults];
+    newShowResults[currentVariant] = true;
+    setShowResults(newShowResults);
   };
 
   const resetExercise = () => {
-    setLoopAnswers({});
-    setTypeAnswer('');
-    setShowResults(false);
+    const newLoopAnswers = { ...loopAnswers };
+    newLoopAnswers[currentVariant] = {};
+    setLoopAnswers(newLoopAnswers);
+    const newTypeAnswers = { ...typeAnswers };
+    newTypeAnswers[currentVariant] = '';
+    setTypeAnswers(newTypeAnswers);
+    const newShowResults = [...showResults];
+    newShowResults[currentVariant] = false;
+    setShowResults(newShowResults);
   };
 
   const isLoopCorrect = (id: number) => {
     const exercise = loopExercises.find(ex => ex.id === id);
     if (!exercise) return false;
-    const userAnswer = parseInt(loopAnswers[id]);
+    const userAnswer = parseInt(currentLoopAnswers[id]);
     const correctAnswer = exercise.correctAnswer;
     
     if (correctAnswer === -1) {
@@ -55,7 +109,7 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ loopExercises, typeOp
   };
 
   const isTypeCorrect = () => {
-    return typeAnswer === correctType;
+    return currentTypeAnswer === correctType;
   };
 
   const getLoopScore = () => {
@@ -69,8 +123,8 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ loopExercises, typeOp
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-teal-100 p-6">
-      <div className="max-w-5xl mx-auto space-y-8">
+    <div className="w-full min-h-screen bg-gradient-to-br from-green-50 to-teal-100 p-6 flex items-start justify-center">
+      <div className="max-w-5xl w-full">
         
         <div className="flex justify-between items-center mb-6">
           {previousExercisePath && (
@@ -84,6 +138,23 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ loopExercises, typeOp
           <h1 className="text-3xl font-bold text-green-900 mb-6">
             Instrucțiuni Repetitive - Exercițiu
           </h1>
+
+          {/* Variant Buttons */}
+          <div className="flex gap-2 mb-6">
+            {variants.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentVariant(idx)}
+                className={`px-4 py-2 rounded-lg font-semibold transition ${
+                  currentVariant === idx
+                    ? 'bg-purple-600 text-white scale-110'
+                    : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
+                }`}
+              >
+                {idx + 1}
+              </button>
+            ))}
+          </div>
 
           <div className="bg-green-50 border-2 border-green-300 rounded-lg p-5 mb-6">
             <h2 className="text-xl font-semibold text-green-900 mb-3">
@@ -119,25 +190,25 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ loopExercises, typeOp
                           <code className="text-base font-mono">{exercise.code}</code>
                         </td>
                         <td className={`border-2 border-gray-400 p-4 ${
-                          showResults && loopAnswers[exercise.id] ? 
+                          showResults[currentVariant] && currentLoopAnswers[exercise.id] ? 
                             (isLoopCorrect(exercise.id) ? 'bg-green-100' : 'bg-red-100') : ''
                         }`}>
                           <div className="flex items-center gap-3">
                             <input
                               type="number"
-                              value={loopAnswers[exercise.id] || ''}
+                              value={currentLoopAnswers[exercise.id] || ''}
                               onChange={(e) => handleLoopAnswerChange(exercise.id, e.target.value)}
-                              disabled={showResults}
+                              disabled={showResults[currentVariant]}
                               placeholder="Număr..."
                               className="w-full p-3 text-center text-lg font-bold border-2 border-gray-300 rounded focus:outline-none focus:border-green-500 disabled:bg-gray-100"
                             />
-                            {showResults && loopAnswers[exercise.id] && (
+                            {showResults[currentVariant] && currentLoopAnswers[exercise.id] && (
                               isLoopCorrect(exercise.id) ? 
                                 <CheckCircle className="w-7 h-7 text-green-500 flex-shrink-0" /> : 
                                 <XCircle className="w-7 h-7 text-red-500 flex-shrink-0" />
                             )}
                           </div>
-                          {showResults && loopAnswers[exercise.id] && !isLoopCorrect(exercise.id) && (
+                          {showResults[currentVariant] && currentLoopAnswers[exercise.id] && !isLoopCorrect(exercise.id) && (
                             <div className="mt-2 text-sm">
                               <div className="text-red-600 font-semibold">
                                 Corect: {exercise.correctAnswer === -1 ? 0 : exercise.correctAnswer}
@@ -160,7 +231,7 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ loopExercises, typeOp
             </h3>
             
             <div className={`border-2 rounded-lg p-6 ${
-              showResults ? (isTypeCorrect() ? 'border-green-400 bg-green-50' : 'border-red-400 bg-red-50') : 'border-gray-300'
+              showResults[currentVariant] ? (isTypeCorrect() ? 'border-green-400 bg-green-50' : 'border-red-400 bg-red-50') : 'border-gray-300'
             }`}>
               <div className="flex items-center gap-6 justify-center">
                 {typeOptions.map((type) => (
@@ -169,9 +240,9 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ loopExercises, typeOp
                       type="radio"
                       name="dataType"
                       value={type}
-                      checked={typeAnswer === type}
+                      checked={currentTypeAnswer === type}
                       onChange={() => handleTypeAnswerChange(type)}
-                      disabled={showResults}
+                      disabled={showResults[currentVariant]}
                       className="w-6 h-6 cursor-pointer"
                     />
                     <span className="text-2xl font-semibold">{type}</span>
@@ -179,7 +250,7 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ loopExercises, typeOp
                 ))}
               </div>
               
-              {showResults && typeAnswer && (
+              {showResults[currentVariant] && currentTypeAnswer && (
                 <div className="mt-4 text-center">
                   {isTypeCorrect() ? (
                     <div className="flex items-center justify-center gap-2 text-green-600 font-semibold">
@@ -202,7 +273,7 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ loopExercises, typeOp
           <div className="flex gap-4 items-center">
             <button
               onClick={checkAnswers}
-              disabled={Object.keys(loopAnswers).length === 0 && !typeAnswer}
+              disabled={Object.keys(currentLoopAnswers).length === 0 && !currentTypeAnswer}
               className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed shadow-lg text-lg"
             >
               Verifică Răspunsurile
@@ -215,7 +286,7 @@ const ForLoopExercise: React.FC<ForLoopExerciseProps> = ({ loopExercises, typeOp
               Resetează
             </button>
 
-            {showResults && (
+            {showResults[currentVariant] && (
               <div className="ml-auto flex items-center gap-3 bg-green-100 px-6 py-3 rounded-lg">
                 <Award className="w-6 h-6 text-green-600" />
                 <span className="text-xl font-bold text-green-900">

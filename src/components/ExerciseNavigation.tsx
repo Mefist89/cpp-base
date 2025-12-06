@@ -5,8 +5,8 @@ const exercisePaths = [
     '/types',
     '/expressions',
     '/truth-tables',
-    '/exercises/for-loop',
-    '/exercises/expression-values',
+    '/for-loop',
+    '/expression-values',
 ];
 
 const ExerciseNavigation = () => {

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Award, AlertCircle, ArrowLeft, ArrowRight } from 'lucide-react';
 
+type TruthTableAnswers = { not_x3: string; x2_OR_notx3: string; x1_AND_x2: string; y: string };
+
 const generateRows = () => {
     const rows = [];
     for (let i = 0; i < 8; i++) {
@@ -13,49 +15,91 @@ const generateRows = () => {
     return rows;
 };
 
-const truthTableRows = generateRows();
-
-const calculateCorrectAnswers = () => {
-    return truthTableRows.map(row => {
+const calculateCorrectAnswers = (rows: { x1: number; x2: number; x3: number }[]) => {
+    return rows.map(row => {
         const not_x3 = row.x3 === 0 ? 1 : 0;
         const x2_OR_notx3 = row.x2 || not_x3;
         const x1_AND_x2 = row.x1 && row.x2;
         const y = x2_OR_notx3 || x1_AND_x2;
-
         return { not_x3, x2_OR_notx3, x1_AND_x2, y };
     });
 };
 
-const correctTruthTableAnswers = calculateCorrectAnswers();
-
-type TruthTableAnswers = { not_x3: string; x2_OR_notx3: string; x1_AND_x2: string; y: string };
+const truthTableVariants = [
+    {
+        generateRows,
+        calculateCorrectAnswers,
+        formula: 'y = NOT x₃ OR x₂, apoi OR cu (x₁ AND x₂)'
+    },
+    {
+        generateRows,
+        calculateCorrectAnswers,
+        formula: 'y = (NOT x₃ AND x₂) OR (x₁ AND x₂)'
+    },
+    {
+        generateRows,
+        calculateCorrectAnswers,
+        formula: 'y = x₂ OR (NOT x₃ AND NOT x₁)'
+    },
+    {
+        generateRows,
+        calculateCorrectAnswers,
+        formula: 'y = (NOT x₃ OR x₂) AND (x₁ OR x₃)'
+    },
+    {
+        generateRows,
+        calculateCorrectAnswers,
+        formula: 'y = NOT (x₃ AND NOT x₂) OR x₁'
+    }
+];
 
 const TruthTableExercises: React.FC = () => {
-    const [truthTableAnswers, setTruthTableAnswers] = useState(
-        Array(8).fill(null).map(() => ({ not_x3: '', x2_OR_notx3: '', x1_AND_x2: '', y: '' }))
-    );
-    const [showTruthTableResults, setShowTruthTableResults] = useState(false);
+    const [currentVariant, setCurrentVariant] = useState(0);
+    const [truthTableAnswers, setTruthTableAnswers] = useState<{ [key: number]: TruthTableAnswers[] }>({});
+    const [showTruthTableResults, setShowTruthTableResults] = useState<boolean[]>(Array(truthTableVariants.length).fill(false));
+
+    const variant = truthTableVariants[currentVariant];
+    const truthTableRows = variant.generateRows();
+    const correctTruthTableAnswers = variant.calculateCorrectAnswers(truthTableRows);
+
+    if (!truthTableAnswers[currentVariant]) {
+        const newAnswers = { ...truthTableAnswers };
+        newAnswers[currentVariant] = Array(8).fill(null).map(() => ({ not_x3: '', x2_OR_notx3: '', x1_AND_x2: '', y: '' }));
+        setTruthTableAnswers(newAnswers);
+    }
+
+    const currentAnswers = truthTableAnswers[currentVariant] || Array(8).fill(null).map(() => ({ not_x3: '', x2_OR_notx3: '', x1_AND_x2: '', y: '' }));
 
     const handleTruthTableInput = (rowIndex: number, column: keyof TruthTableAnswers, value: string) => {
         if (value === '' || value === '0' || value === '1') {
-            const newAnswers = [...truthTableAnswers];
-            newAnswers[rowIndex][column] = value;
+            const newAnswers = { ...truthTableAnswers };
+            if (!newAnswers[currentVariant]) {
+                newAnswers[currentVariant] = Array(8).fill(null).map(() => ({ not_x3: '', x2_OR_notx3: '', x1_AND_x2: '', y: '' }));
+            }
+            newAnswers[currentVariant][rowIndex][column] = value;
             setTruthTableAnswers(newAnswers);
         }
     };
 
-    const checkTruthTableAnswers = () => setShowTruthTableResults(true);
-
-    const resetTruthTable = () => {
-        setTruthTableAnswers(Array(8).fill(null).map(() => ({ not_x3: '', x2_OR_notx3: '', x1_AND_x2: '', y: '' })));
-        setShowTruthTableResults(false);
+    const checkTruthTableAnswers = () => {
+        const newShowResults = [...showTruthTableResults];
+        newShowResults[currentVariant] = true;
+        setShowTruthTableResults(newShowResults);
     };
 
+    const resetTruthTable = () => {
+        const newAnswers = { ...truthTableAnswers };
+        newAnswers[currentVariant] = Array(8).fill(null).map(() => ({ not_x3: '', x2_OR_notx3: '', x1_AND_x2: '', y: '' }));
+        setTruthTableAnswers(newAnswers);
+        const newShowResults = [...showTruthTableResults];
+        newShowResults[currentVariant] = false;
+        setShowTruthTableResults(newShowResults);
+    };
 
-    type TruthTableColumn = keyof typeof truthTableAnswers[0];
+    type TruthTableColumn = keyof TruthTableAnswers;
 
     const isTruthTableCorrect = (rowIndex: number, column: TruthTableColumn) => {
-        const userValue = parseInt(truthTableAnswers[rowIndex][column]);
+        const userValue = parseInt(currentAnswers[rowIndex][column]);
         const correctValue = correctTruthTableAnswers[rowIndex][column];
         return userValue === correctValue;
     };
@@ -65,7 +109,7 @@ const TruthTableExercises: React.FC = () => {
         let total = 0;
         truthTableRows.forEach((_, rowIndex) => {
             (['not_x3', 'x2_OR_notx3', 'x1_AND_x2', 'y'] as TruthTableColumn[]).forEach(column => {
-                if (truthTableAnswers[rowIndex][column] !== '') {
+                if (currentAnswers[rowIndex][column] !== '') {
                     total++;
                     if (isTruthTableCorrect(rowIndex, column as TruthTableColumn)) correct++;
                 }
@@ -75,7 +119,7 @@ const TruthTableExercises: React.FC = () => {
     };
 
     const getTruthTableCellClass = (rowIndex: number, column: TruthTableColumn) => {
-        if (!showTruthTableResults || truthTableAnswers[rowIndex][column] === '') {
+        if (!showTruthTableResults[currentVariant] || currentAnswers[rowIndex][column] === '') {
             return 'border border-gray-400 p-2';
         }
         return `border border-gray-400 p-2 ${isTruthTableCorrect(rowIndex, column) ? 'bg-green-100' : 'bg-red-100'}`;
@@ -102,9 +146,26 @@ const TruthTableExercises: React.FC = () => {
                         </div>
                     </div>
 
+                    {/* Variant Buttons */}
+                    <div className="flex gap-2 mb-6">
+                        {truthTableVariants.map((_, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => setCurrentVariant(idx)}
+                                className={`px-4 py-2 rounded-lg font-semibold transition ${
+                                    currentVariant === idx
+                                        ? 'bg-purple-600 text-white scale-110'
+                                        : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
+                                }`}
+                            >
+                                {idx + 1}
+                            </button>
+                        ))}
+                    </div>
+
                     <div className="bg-indigo-50 border-2 border-indigo-300 rounded-lg p-6 mb-6">
                         <p className="text-2xl font-bold text-center text-indigo-900">
-                            y = NOT x₃ OR x₂, apoi OR cu (x₁ AND x₂)
+                            {variant.formula}
                         </p>
                     </div>
 
@@ -139,30 +200,30 @@ const TruthTableExercises: React.FC = () => {
                                         <td className="border border-gray-400 p-2 text-center font-bold text-base bg-gray-100">{row.x3}</td>
 
                                         <td className={getTruthTableCellClass(rowIndex, 'not_x3')}>
-                                            <input type="text" maxLength={1} value={truthTableAnswers[rowIndex].not_x3}
+                                            <input type="text" maxLength={1} value={currentAnswers[rowIndex].not_x3}
                                                 onChange={(e) => handleTruthTableInput(rowIndex, 'not_x3', e.target.value)}
-                                                disabled={showTruthTableResults} placeholder="?"
+                                                disabled={showTruthTableResults[currentVariant]} placeholder="?"
                                                 className="w-full text-center text-base font-bold border-2 border-gray-300 rounded p-1 focus:outline-none focus:border-indigo-500 disabled:bg-transparent" />
                                         </td>
 
                                         <td className={getTruthTableCellClass(rowIndex, 'x2_OR_notx3')}>
-                                            <input type="text" maxLength={1} value={truthTableAnswers[rowIndex].x2_OR_notx3}
+                                            <input type="text" maxLength={1} value={currentAnswers[rowIndex].x2_OR_notx3}
                                                 onChange={(e) => handleTruthTableInput(rowIndex, 'x2_OR_notx3', e.target.value)}
-                                                disabled={showTruthTableResults} placeholder="?"
+                                                disabled={showTruthTableResults[currentVariant]} placeholder="?"
                                                 className="w-full text-center text-base font-bold border-2 border-gray-300 rounded p-1 focus:outline-none focus:border-indigo-500 disabled:bg-transparent" />
                                         </td>
 
                                         <td className={getTruthTableCellClass(rowIndex, 'x1_AND_x2')}>
-                                            <input type="text" maxLength={1} value={truthTableAnswers[rowIndex].x1_AND_x2}
+                                            <input type="text" maxLength={1} value={currentAnswers[rowIndex].x1_AND_x2}
                                                 onChange={(e) => handleTruthTableInput(rowIndex, 'x1_AND_x2', e.target.value)}
-                                                disabled={showTruthTableResults} placeholder="?"
+                                                disabled={showTruthTableResults[currentVariant]} placeholder="?"
                                                 className="w-full text-center text-base font-bold border-2 border-gray-300 rounded p-1 focus:outline-none focus:border-indigo-500 disabled:bg-transparent" />
                                         </td>
 
                                         <td className={getTruthTableCellClass(rowIndex, 'y')}>
-                                            <input type="text" maxLength={1} value={truthTableAnswers[rowIndex].y}
+                                            <input type="text" maxLength={1} value={currentAnswers[rowIndex].y}
                                                 onChange={(e) => handleTruthTableInput(rowIndex, 'y', e.target.value)}
-                                                disabled={showTruthTableResults} placeholder="?"
+                                                disabled={showTruthTableResults[currentVariant]} placeholder="?"
                                                 className="w-full text-center text-base font-bold border-2 border-gray-300 rounded p-1 focus:outline-none focus:border-indigo-500 disabled:bg-transparent bg-indigo-50" />
                                         </td>
                                     </tr>
@@ -170,7 +231,7 @@ const TruthTableExercises: React.FC = () => {
                             </tbody>
                         </table>
                     </div>
-                    {showTruthTableResults && (
+                    {showTruthTableResults[currentVariant] && (
                         <div className="ml-auto flex items-center gap-3 bg-indigo-100 px-6 py-3 rounded-lg">
                             <Award className="w-6 h-6 text-indigo-600" />
                             <span className="text-xl font-bold text-indigo-900">
@@ -178,7 +239,7 @@ const TruthTableExercises: React.FC = () => {
                             </span>
                         </div>
                     )}
-                    {showTruthTableResults && (
+                    {showTruthTableResults[currentVariant] && (
                         <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                             <h3 className="font-semibold text-lg mb-2 text-blue-900">Răspunsuri corecte:</h3>
                             <div className="grid grid-cols-2 gap-3 text-sm">

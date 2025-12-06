@@ -13,8 +13,8 @@ function App() {
       <Route path="/types" element={<TypeExercisePage />} />
       <Route path="/expressions" element={<ExpressionExercisePage />} />
       <Route path="/truth-tables" element={<TruthTableExercisePage />} />
-      <Route path="/exercises/for-loop" element={<ForLoopExercisePage />} />
-      <Route path="/exercises/expression-values" element={<ExpressionValuesExercisePage />} />
+      <Route path="/for-loop" element={<ForLoopExercisePage />} />
+      <Route path="/expression-values" element={<ExpressionValuesExercisePage />} />
     </Routes>
   )
 }

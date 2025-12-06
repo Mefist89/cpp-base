@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CheckCircle, XCircle, Award, Info } from 'lucide-react';
 
 interface Exercise {
@@ -9,41 +9,63 @@ interface Exercise {
 }
 
 interface ExpressionValuesExerciseProps {
-  exercises: Exercise[];
+  variants: Exercise[][];
 }
 
-const ExpressionValuesExercise: React.FC<ExpressionValuesExerciseProps> = ({ exercises }) => {
-  const [answers, setAnswers] = useState<Record<number, string>>({});
-  const [showResults, setShowResults] = useState(false);
+const ExpressionValuesExercise: React.FC<ExpressionValuesExerciseProps> = ({ variants }) => {
+  const [currentVariant, setCurrentVariant] = useState(0);
+  const [answers, setAnswers] = useState<{ [key: number]: Record<number, string> }>({ 0: {} });
+  const [showResults, setShowResults] = useState<boolean[]>(Array(variants.length).fill(false));
+
+  useEffect(() => {
+    if (!answers[currentVariant]) {
+      setAnswers(prev => ({
+        ...prev,
+        [currentVariant]: {}
+      }));
+    }
+  }, [currentVariant]);
 
   const handleAnswerChange = (id: number, value: string) => {
     setAnswers(prev => ({
       ...prev,
-      [id]: value
+      [currentVariant]: {
+        ...prev[currentVariant],
+        [id]: value
+      }
     }));
   };
 
   const checkAnswers = () => {
-    setShowResults(true);
+    const newShowResults = [...showResults];
+    newShowResults[currentVariant] = true;
+    setShowResults(newShowResults);
   };
 
   const resetExercise = () => {
-    setAnswers({});
-    setShowResults(false);
+    const newShowResults = [...showResults];
+    newShowResults[currentVariant] = false;
+    setShowResults(newShowResults);
+    setAnswers(prev => ({
+      ...prev,
+      [currentVariant]: {}
+    }));
   };
 
   const isCorrect = (id: number) => {
-    const exercise = exercises.find(ex => ex.id === id);
+    const exercise = variants[currentVariant].find(ex => ex.id === id);
     if (!exercise) return false;
-    const userAnswer = answers[id]?.trim().toLowerCase();
+    const userAnswer = answers[currentVariant]?.[id]?.trim().toLowerCase() || '';
     const correctAnswer = exercise.correctValue.toLowerCase();
     
     return userAnswer === correctAnswer;
   };
 
   const getScore = () => {
-    return exercises.filter(ex => isCorrect(ex.id)).length;
+    return variants[currentVariant].filter(ex => isCorrect(ex.id)).length;
   };
+
+  const currentExercises = variants[currentVariant] || [];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-100 p-6">
@@ -53,6 +75,23 @@ const ExpressionValuesExercise: React.FC<ExpressionValuesExerciseProps> = ({ exe
           <h1 className="text-3xl font-bold text-orange-900 mb-6">
             Instructiuni si Expresii - Valori
           </h1>
+
+          {/* Variant Buttons */}
+          <div className="flex gap-3 mb-8 justify-center">
+            {variants.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentVariant(index)}
+                className={`w-12 h-12 rounded-full font-bold text-lg transition transform ${
+                  currentVariant === index
+                    ? 'bg-purple-600 text-white scale-110 shadow-lg'
+                    : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
 
           <div className="bg-orange-50 border-2 border-orange-300 rounded-lg p-5 mb-6">
             <h2 className="text-xl font-semibold text-orange-900 mb-3">
@@ -82,32 +121,32 @@ const ExpressionValuesExercise: React.FC<ExpressionValuesExerciseProps> = ({ exe
                 </tr>
               </thead>
               <tbody>
-                {exercises.map((exercise, index) => (
+                {currentExercises.map((exercise, index) => (
                   <tr key={exercise.id} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
                     <td className="border-2 border-gray-400 p-4">
                       <pre className="text-sm font-mono whitespace-pre-wrap">{exercise.instruction}</pre>
                     </td>
                     <td className={`border-2 border-gray-400 p-4 ${
-                      showResults && answers[exercise.id] ? 
+                      showResults[currentVariant] && answers[currentVariant]?.[exercise.id] ? 
                         (isCorrect(exercise.id) ? 'bg-green-100' : 'bg-red-100') : ''
                     }`}>
                       <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-3">
                           <input
                             type="text"
-                            value={answers[exercise.id] || ''}
+                            value={answers[currentVariant]?.[exercise.id] || ''}
                             onChange={(e) => handleAnswerChange(exercise.id, e.target.value)}
-                            disabled={showResults}
+                            disabled={showResults[currentVariant]}
                             placeholder="Valoarea..."
                             className="w-full p-3 text-center text-lg font-bold border-2 border-gray-300 rounded focus:outline-none focus:border-orange-500 disabled:bg-gray-100"
                           />
-                          {showResults && answers[exercise.id] && (
+                          {showResults[currentVariant] && answers[currentVariant]?.[exercise.id] && (
                             isCorrect(exercise.id) ? 
                               <CheckCircle className="w-7 h-7 text-green-500 flex-shrink-0" /> : 
                               <XCircle className="w-7 h-7 text-red-500 flex-shrink-0" />
                           )}
                         </div>
-                        {showResults && answers[exercise.id] && !isCorrect(exercise.id) && (
+                        {showResults[currentVariant] && answers[currentVariant]?.[exercise.id] && !isCorrect(exercise.id) && (
                           <div className="text-sm">
                             <div className="text-red-600 font-semibold">
                               Corect: <strong>{exercise.correctValue}</strong>
@@ -126,7 +165,7 @@ const ExpressionValuesExercise: React.FC<ExpressionValuesExerciseProps> = ({ exe
           <div className="flex gap-4 items-center">
             <button
               onClick={checkAnswers}
-              disabled={Object.keys(answers).length === 0}
+              disabled={Object.keys(answers[currentVariant] || {}).length === 0}
               className="bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed shadow-lg text-lg"
             >
               Verifică Răspunsurile
@@ -139,11 +178,11 @@ const ExpressionValuesExercise: React.FC<ExpressionValuesExerciseProps> = ({ exe
               Resetează
             </button>
 
-            {showResults && (
+            {showResults[currentVariant] && (
               <div className="ml-auto flex items-center gap-3 bg-orange-100 px-6 py-3 rounded-lg">
                 <Award className="w-6 h-6 text-orange-600" />
                 <span className="text-xl font-bold text-orange-900">
-                  Scor: {getScore()} / {exercises.length}
+                  Scor: {getScore()} / {currentExercises.length}
                 </span>
               </div>
             )}
