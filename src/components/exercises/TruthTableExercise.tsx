@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Award, AlertCircle } from 'lucide-react';
 import VariantButtons from '../VariantButtons';
+import ReferenceGuide3 from '../ReferenceGuide3';
 
 interface TruthTableAnswers {
   not_x3: string;
@@ -212,6 +213,7 @@ const TruthTableExercise: React.FC<TruthTableExerciseProps> = ({ variants }) => 
           Resetează
         </button>
       </div>
+      <ReferenceGuide3 /> 
     </div>
   );
 };

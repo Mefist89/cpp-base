@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { CheckCircle, XCircle, Award } from 'lucide-react';
 import VariantButtons from '../VariantButtons';
+import ReferenceGuide1 from '../ReferenceGuide1';
+
 
 interface TypeExerciseData {
   id: string;
@@ -121,6 +123,7 @@ const TypeExercise: React.FC<TypeExerciseProps> = ({ variants }) => {
           Resetează
         </button>
       </div>
+      <ReferenceGuide1 /> 
     </div>
   );
 };

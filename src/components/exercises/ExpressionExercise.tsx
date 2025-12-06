@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CheckCircle, XCircle, Award } from 'lucide-react';
 import VariantButtons from '../VariantButtons';
+import ReferenceGuide2 from '../ReferenceGuide2';
 
 interface ExpressionExerciseData {
   [key: string]: {
@@ -171,6 +172,7 @@ const ExpressionExercise: React.FC<ExpressionExerciseProps> = ({ variants }) => 
           Resetează
         </button>
       </div>
+      <ReferenceGuide2 /> 
     </div>
   );
 };

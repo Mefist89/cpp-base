@@ -1,29 +1,8 @@
 
-const ReferenceGuide = () => {
+const ReferenceGuide2 = () => {
     return (
         <div className="bg-white rounded-xl shadow-lg p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">📚 Ghid de Referință</h2>
-
-            <h3 className="text-lg font-semibold mb-3">Tipuri de date în C++:</h3>
-            <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-blue-50 p-3 rounded-lg">
-                    <h4 className="font-bold text-blue-900 mb-1">int</h4>
-                    <p className="text-sm text-gray-700">Numere întregi (ex: 260, -5, 0)</p>
-                </div>
-                <div className="bg-green-50 p-3 rounded-lg">
-                    <h4 className="font-bold text-green-900 mb-1">float</h4>
-                    <p className="text-sm text-gray-700">Numere zecimale (ex: 15.25, -2.01)</p>
-                </div>
-                <div className="bg-yellow-50 p-3 rounded-lg">
-                    <h4 className="font-bold text-yellow-900 mb-1">char</h4>
-                    <p className="text-sm text-gray-700">Un caracter (ex: 'a', '+')</p>
-                </div>
-                <div className="bg-purple-50 p-3 rounded-lg">
-                    <h4 className="font-bold text-purple-900 mb-1">bool</h4>
-                    <p className="text-sm text-gray-700">Valori logice (true/false)</p>
-                </div>
-            </div>
-
             <h2 className="text-xl font-semibold text-gray-900 mb-4 mt-6">
             ⚙️ Operații în C++:
           </h2>
@@ -70,10 +49,7 @@ const ReferenceGuide = () => {
                 </div>
               </div>
             </div>
-
-            {/* Comparison Operations */}
-            <div className="bg-indigo-50 border border-indigo-200 p-4 rounded-lg">
-              <h3 className="font-bold text-indigo-900 mb-3 text-lg">Operații de Comparare (returnează bool):</h3>
+            <h3 className="font-bold text-indigo-900 mb-3 text-lg">Operații de Comparare (returnează bool):</h3>
               <div className="grid grid-cols-2 gap-3">
                 <div className="flex items-start gap-2">
                   <span className="font-mono font-bold text-indigo-700 text-lg">==</span>
@@ -118,8 +94,6 @@ const ReferenceGuide = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
             {/* Important Note */}
             <div className="bg-amber-50 border border-amber-300 p-4 rounded-lg">
               <h3 className="font-bold text-amber-900 mb-2">⚠️ Notă importantă:</h3>
@@ -131,37 +105,8 @@ const ReferenceGuide = () => {
               </ul>
             </div>
           </div>
-
-             <h2 className="text-xl font-semibold text-gray-900 mb-4 mt-6">
-            ⚙️ Operații Logice:
-          </h2>
-            <div className="grid grid-cols-3 gap-4">
-                <div className="bg-red-50 p-3 rounded-lg border border-red-200">
-                    <h4 className="font-bold text-red-900 mb-1">NOT</h4>
-                    <div className="font-mono text-xs space-y-1">
-                        <div>NOT 0 = 1</div>
-                        <div>NOT 1 = 0</div>
-                    </div>
-                </div>
-                <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
-                    <h4 className="font-bold text-blue-900 mb-1">OR</h4>
-                    <div className="font-mono text-xs space-y-1">
-                        <div>0 OR 0 = 0</div>
-                        <div>0 OR 1 = 1</div>
-                        <div>1 OR 1 = 1</div>
-                    </div>
-                </div>
-                <div className="bg-green-50 p-3 rounded-lg border border-green-200">
-                    <h4 className="font-bold text-green-900 mb-1">AND</h4>
-                    <div className="font-mono text-xs space-y-1">
-                        <div>0 AND 0 = 0</div>
-                        <div>0 AND 1 = 0</div>
-                        <div>1 AND 1 = 1</div>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };
 
-export default ReferenceGuide;
+export default ReferenceGuide2;

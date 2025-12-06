@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import ReferenceGuide from './components/ReferenceGuide';
 import { Type, FunctionSquare, Pilcrow, Repeat, Calculator } from 'lucide-react';
+import ReferenceGuide3 from './components/ReferenceGuide3';
 
 const AllExercises = () => {
     return (
@@ -43,7 +43,7 @@ const AllExercises = () => {
                     </Link>
                 </div>
 
-                <ReferenceGuide />
+                <ReferenceGuide3 />
             </div>
         </div>
     );
