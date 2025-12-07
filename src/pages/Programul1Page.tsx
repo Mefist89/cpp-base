@@ -51,7 +51,7 @@ int main()
     m = n / 10 % 10;    // cifra din mijloc
     f = n / 100;        // prima cifră
     
-    cout << l + m + f;  // produsul cifrelor
+    cout << l + m + f;  // suma cifrelor
 
     return 0;
 }`
