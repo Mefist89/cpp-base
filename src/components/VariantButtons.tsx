@@ -4,7 +4,7 @@ interface VariantButtonsProps {
   totalVariants: number;
   currentVariant: number;
   onVariantChange: (variant: number) => void;
-  color?: 'purple' | 'blue' | 'indigo';
+  color?: 'purple' | 'blue' | 'indigo' | 'green' | 'red';
 }
 
 const VariantButtons: React.FC<VariantButtonsProps> = ({ 
@@ -24,6 +24,14 @@ const VariantButtons: React.FC<VariantButtonsProps> = ({
     },
     indigo: {
       active: 'bg-indigo-600 text-white',
+      inactive: 'bg-gray-300 text-gray-700'
+    },
+    green: {
+      active: 'bg-green-600 text-white',
+      inactive: 'bg-gray-300 text-gray-700'
+    },
+    red: {
+      active: 'bg-red-600 text-white',
       inactive: 'bg-gray-300 text-gray-700'
     }
   };
