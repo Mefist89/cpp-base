@@ -10,7 +10,25 @@ const programul3Variants = [
         inputExplanation: 'Programul va citi de la tastatură un număr natural, de 3 cifre.',
         outputExplanation: 'Programul va afişa pe ecran cea mai mică cifră a numărului citit.',
         exampleInput: '187',
-        exampleOutput: '1'
+        exampleOutput: '1',
+        solution: `#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n, f, m, l;
+    cin >> n;
+    
+    l = n % 10;         // ultima cifră
+    m = n / 10 % 10;    // cifra din mijloc
+    f = n / 100;        // prima cifră
+    
+    if(f<l && f<m) cout<<f;     // cel mai mic este f
+    if(l<f && l<m) cout<<l;     // cel mai mic este l
+    if(m<f && m<l) cout<<m;     // cel mai mic este m
+
+    return 0;
+}`
       }
     ]
   },
@@ -22,7 +40,25 @@ const programul3Variants = [
         inputExplanation: 'Programul va citi de la tastatură un număr natural, de 3 cifre.',
         outputExplanation: 'Programul va afişa pe ecran cea mai mică cifră a numărului citit.',
         exampleInput: '187',
-        exampleOutput: '8'
+        exampleOutput: '8',
+                solution: `#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n, f, m, l;
+    cin >> n;
+    
+    l = n % 10;         // ultima cifră
+    m = n / 10 % 10;    // cifra din mijloc
+    f = n / 100;        // prima cifră
+    
+    if(f>l && f>m) cout<<f;     // cel mai mare este f
+    if(l>f && l>m) cout<<l;     // cel mai mare este l
+    if(m>f && m>l) cout<<m;     // cel mai mare este m
+
+    return 0;
+}`
       }
     ]
   }

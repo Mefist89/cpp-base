@@ -10,7 +10,24 @@ const programul2Variants = [
         inputExplanation: 'De la tastatură se citește un număr întreg n',
         outputExplanation: 'La ecran se afișează cuvântul DA dacă cifra zecilor a numărului n este egală cu suma cifrelor sutelor și unităților, sau se afișează cuvântul NU – în caz contrar.',
         exampleInput: '238',
-        exampleOutput: 'NU'
+        exampleOutput: 'NU', 
+        solution: `#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n, f, m, l;
+    cin >> n;
+    
+    l = n % 10;         // ultima cifră
+    m = n / 10 % 10;    // cifra din mijloc
+    f = n / 100;        // prima cifră
+    
+    if(m == f + l) cout<<"DA";  // verificare condiție
+    else cout<<"NU";
+
+    return 0;
+}`
       }
     ]
   },
@@ -22,7 +39,24 @@ const programul2Variants = [
         inputExplanation: 'De la tastatură se citește un număr întreg n',
         outputExplanation: 'La ecran se afișează cuvântul DA dacă cifra zecilor a numărului n este egală cu suma cifrelor sutelor și unităților, sau se afișează cuvântul NU – în caz contrar.',
         exampleInput: '132',
-        exampleOutput: 'DA'
+        exampleOutput: 'DA',
+        solution: `#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n, f, m, l;
+    cin >> n;
+    
+    l = n % 10;         // ultima cifră
+    m = n / 10 % 10;    // cifra din mijloc
+    f = n / 100;        // prima cifră
+    
+    if(m == f + l) cout<<"DA";  // verificare condiție
+    else cout<<"NU";
+
+    return 0;
+}`
       }
     ]
   }

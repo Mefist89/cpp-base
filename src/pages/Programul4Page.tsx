@@ -11,7 +11,27 @@ const programul4Variants = [
         outputExplanation: 'Programul va afișa pe ecran suma numerelor pare și produsul numerelor impare, separate prin câte un spațiu.',
         exampleInput: `5
 2 1 3 4 5`,
-        exampleOutput: '6 15'
+        exampleOutput: '6 15',
+        solution: `#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n, x, i, s = 0, p = 1;
+    cin>>n;
+    
+    for(i=0; i<n; i++){
+        cin>>x;
+        
+        if( x % 2 == 0 ) s = s + x;
+        if( x % 2 == 1 ) p = p * x;
+    }
+    
+    cout<<s<<endl;
+    cout<<p;
+
+    return 0;
+}`
       }
     ]
   },
@@ -24,7 +44,27 @@ const programul4Variants = [
         outputExplanation: 'Programul va afișa pe ecran suma numerelor impare și produsul numerelor pare, separate prin câte un spațiu.',
         exampleInput: `5
 2 1 3 4 5`,
-        exampleOutput: '9 8'
+        exampleOutput: '9 8',
+        solution: `#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n, x, i, s = 0, p = 1;
+    cin>>n;
+    
+    for(i=0; i<n; i++){
+        cin>>x;
+        
+        if( x % 2 == 1 ) s = s + x;
+        if( x % 2 == 0 ) p = p * x;
+    }
+    
+    cout<<s<<endl;
+    cout<<p;
+
+    return 0;
+}`
       }
     ]
   }

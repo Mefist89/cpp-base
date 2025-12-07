@@ -8,6 +8,7 @@ interface ProgramulExerciseData {
   outputExplanation: string;
   exampleInput: string;
   exampleOutput: string;
+  solution?: string;
 }
 
 interface ProgramulExerciseVariant {
@@ -99,6 +100,19 @@ const Programul4Exercise: React.FC<Programul4ExerciseProps> = ({ variants }) => 
             </div>
           </div>
         </div>
+
+        {/* Solution */}
+        {exercise.solution && (
+          <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 md:p-6 border border-gray-300">
+            <div className="flex items-center gap-2 mb-4">
+              <Code size={24} className="text-red-600" />
+              <h3 className="font-bold text-gray-800 text-sm md:text-base">Soluție C++</h3>
+            </div>
+            <pre className="bg-gray-900 text-green-400 rounded p-4 overflow-x-auto text-xs md:text-sm font-mono whitespace-pre-wrap break-words">
+              {exercise.solution}
+            </pre>
+          </div>
+        )}
       </div>
     </div>
   );
