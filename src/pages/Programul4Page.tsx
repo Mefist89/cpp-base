@@ -9,7 +9,8 @@ const programul4Variants = [
         title: 'Scrieți un program in c++ care citește de la tastatură n numere întregi și afișează pe ecran: suma numerelor pare și produsul numerelor impare.',
         inputExplanation: 'Programul citește de la tastatură numărul n și numerele introduse de la tastatura număre întregi.',
         outputExplanation: 'Programul va afișa pe ecran suma numerelor pare și produsul numerelor impare, separate prin câte un spațiu.',
-        exampleInput: "5\n2 1 3 4 5",
+        exampleInput: `5
+2 1 3 4 5`,
         exampleOutput: '6 15'
       }
     ]
@@ -21,7 +22,8 @@ const programul4Variants = [
         title: 'Scrieți un program in c++ care citește de la tastatură n numere întregi și afișează pe ecran: suma numerelor pare și produsul numerelor impare.',
         inputExplanation: 'Programul citește de la tastatură numărul n și numerele introduse de la tastatura număre întregi.',
         outputExplanation: 'Programul va afișa pe ecran suma numerelor impare și produsul numerelor pare, separate prin câte un spațiu.',
-        exampleInput: '5\n2 1 3 4 5',
+        exampleInput: `5
+2 1 3 4 5`,
         exampleOutput: '9 8'
       }
     ]

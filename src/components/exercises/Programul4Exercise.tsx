@@ -85,7 +85,7 @@ const Programul4Exercise: React.FC<Programul4ExerciseProps> = ({ variants }) => 
             {/* Input Example */}
             <div>
               <p className="font-semibold text-gray-700 mb-2 text-sm">Intrare:</p>
-              <div className="bg-white border-2 border-red-300 rounded px-3 md:px-4 py-2 md:py-3 font-mono text-sm md:text-base bg-gray-50">
+              <div className="bg-white border-2 border-red-300 rounded px-3 md:px-4 py-2 md:py-3 font-mono text-sm md:text-base bg-gray-50 whitespace-pre-wrap">
                 {exercise.exampleInput}
               </div>
             </div>
@@ -93,7 +93,7 @@ const Programul4Exercise: React.FC<Programul4ExerciseProps> = ({ variants }) => 
             {/* Output Example */}
             <div>
               <p className="font-semibold text-gray-700 mb-2 text-sm">Ieșire:</p>
-              <div className="bg-white border-2 border-green-300 rounded px-3 md:px-4 py-2 md:py-3 font-mono text-sm md:text-base bg-gray-50">
+              <div className="bg-white border-2 border-green-300 rounded px-3 md:px-4 py-2 md:py-3 font-mono text-sm md:text-base bg-gray-50 whitespace-pre-wrap">
                 {exercise.exampleOutput}
               </div>
             </div>
