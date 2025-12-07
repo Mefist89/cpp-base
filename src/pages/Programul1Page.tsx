@@ -1,5 +1,5 @@
 import Programul1Exercise from '../components/exercises/Programul1Exercise';
-import ExerciseNavigation from '../components/ExerciseNavigation';
+import ProgramNavigation from '../components/ProgramNavigation';
 
 const programul1Variants = [
   // Variant 1
@@ -31,7 +31,7 @@ const programul1Variants = [
 const Programul1Page: React.FC = () => {
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-blue-50 to-white py-8 px-4">
-      <ExerciseNavigation />
+      <ProgramNavigation />
       <Programul1Exercise variants={programul1Variants} />
     </div>
   );
