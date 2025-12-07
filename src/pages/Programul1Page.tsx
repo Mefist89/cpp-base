@@ -25,42 +25,6 @@ const programul1Variants = [
         exampleOutput: '12'
       }
     ]
-  },
-  // Variant 3
-  {
-    exercises: [
-      {
-        title: 'Să se scrie un program care citește de la tastatură un număr natural cu exact trei cifre și afișează inversul acestuia.',
-        inputExplanation: 'Date de intrare: Programul citește de la tastatură un număr natural cu exact trei cifre.',
-        outputExplanation: 'Date de ieșire: Programul afișează pe ecran inversul numărului citit.',
-        exampleInput: '123',
-        exampleOutput: '321'
-      }
-    ]
-  },
-  // Variant 4
-  {
-    exercises: [
-      {
-        title: 'Să se scrie un program care citește de la tastatură un număr natural cu exact trei cifre și determină cea mai mare cifră.',
-        inputExplanation: 'Date de intrare: Programul citește de la tastatură un număr natural cu exact trei cifre.',
-        outputExplanation: 'Date de ieșire: Programul afișează pe ecran cea mai mare cifră din numărul citit.',
-        exampleInput: '452',
-        exampleOutput: '5'
-      }
-    ]
-  },
-  // Variant 5
-  {
-    exercises: [
-      {
-        title: 'Să se scrie un program care citește de la tastatură un număr natural cu exact trei cifre și determină cea mai mică cifră.',
-        inputExplanation: 'Date de intrare: Programul citește de la tastatură un număr natural cu exact trei cifre.',
-        outputExplanation: 'Date de ieșire: Programul afișează pe ecran cea mai mică cifră din numărul citit.',
-        exampleInput: '852',
-        exampleOutput: '2'
-      }
-    ]
   }
 ];
 

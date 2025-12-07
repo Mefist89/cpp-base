@@ -6,11 +6,11 @@ const programul4Variants = [
   {
     exercises: [
       {
-        title: 'Să se scrie un program care citește un vector de n numere și afișează suma acestora.',
-        inputExplanation: 'Date de intrare: Programul citește de la tastatură n (numărul de elemente), apoi n numere.',
-        outputExplanation: 'Date de ieșire: Programul afișează pe ecran suma tuturor numerelor din vector.',
-        exampleInput: '3\n5\n10\n15',
-        exampleOutput: '30'
+        title: 'Scrieți un program in c++ care citește de la tastatură n numere întregi și afișează pe ecran: suma numerelor pare și produsul numerelor impare.',
+        inputExplanation: 'Programul citește de la tastatură numărul n și numerele introduse de la tastatura număre întregi.',
+        outputExplanation: 'Programul va afișa pe ecran suma numerelor pare și produsul numerelor impare, separate prin câte un spațiu.',
+        exampleInput: "5\n2 1 3 4 5",
+        exampleOutput: '6 15'
       }
     ]
   },
@@ -18,47 +18,11 @@ const programul4Variants = [
   {
     exercises: [
       {
-        title: 'Să se scrie un program care găsește elementul maxim dintr-un vector.',
-        inputExplanation: 'Date de intrare: Programul citește de la tastatură n (numărul de elemente), apoi n numere.',
-        outputExplanation: 'Date de ieșire: Programul afișează pe ecran cel mai mare element din vector.',
-        exampleInput: '4\n12\n8\n25\n6',
-        exampleOutput: '25'
-      }
-    ]
-  },
-  // Variant 3
-  {
-    exercises: [
-      {
-        title: 'Să se scrie un program care inversează un vector.',
-        inputExplanation: 'Date de intrare: Programul citește de la tastatură n (numărul de elemente), apoi n numere.',
-        outputExplanation: 'Date de ieșire: Programul afișează pe ecran vectorul inversat.',
-        exampleInput: '3\n1\n2\n3',
-        exampleOutput: '3 2 1'
-      }
-    ]
-  },
-  // Variant 4
-  {
-    exercises: [
-      {
-        title: 'Să se scrie un program care numără câte numere pare sunt într-un vector.',
-        inputExplanation: 'Date de intrare: Programul citește de la tastatură n (numărul de elemente), apoi n numere.',
-        outputExplanation: 'Date de ieșire: Programul afișează pe ecran câte numere pare sunt în vector.',
-        exampleInput: '5\n2\n5\n4\n7\n8',
-        exampleOutput: '3'
-      }
-    ]
-  },
-  // Variant 5
-  {
-    exercises: [
-      {
-        title: 'Să se scrie un program care calculează media aritmetică a numerelor dintr-un vector.',
-        inputExplanation: 'Date de intrare: Programul citește de la tastatură n (numărul de elemente), apoi n numere.',
-        outputExplanation: 'Date de ieșire: Programul afișează pe ecran media aritmetică a numerelor.',
-        exampleInput: '4\n10\n20\n30\n40',
-        exampleOutput: '25'
+        title: 'Scrieți un program in c++ care citește de la tastatură n numere întregi și afișează pe ecran: suma numerelor pare și produsul numerelor impare.',
+        inputExplanation: 'Programul citește de la tastatură numărul n și numerele introduse de la tastatura număre întregi.',
+        outputExplanation: 'Programul va afișa pe ecran suma numerelor impare și produsul numerelor pare, separate prin câte un spațiu.',
+        exampleInput: '5\n2 1 3 4 5',
+        exampleOutput: '9 8'
       }
     ]
   }
